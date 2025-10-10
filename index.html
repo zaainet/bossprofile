@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>𝐌𝐫.𝐁𝐨𝐬𝐬𝐁𝐚𝐛𝐲 - Ethical Hacker & App Developer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root {
+      --color-primary: #00FFC0;
+      --color-secondary: #FF4D4D;
+      --color-dark: #0A0A0A;
+      --color-light: #f4f4f4;
+      --color-text: #E0E0E0;
+      --font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --glow-shadow: 0 0 20px rgba(0, 255, 192, 0.5);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font-stack);
+      background-color: var(--color-dark);
+      color: var(--color-text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    a { color: var(--color-primary); text-decoration: none; transition: color 0.3s ease; }
+    a:hover { color: var(--color-light); }
+
+    #main-header {
+      background: rgba(10, 10, 10, 0.98);
+      position: fixed;
+      width: 100%;
+      z-index: 100;
+      padding: 15px 0;
+      border-bottom: 2px solid var(--color-primary);
+    }
+    .container { width: 85%; max-width: 1200px; margin: auto; overflow: hidden; }
+    .nav-flex { display: flex; justify-content: space-between; align-items: center; }
+    .logo-text { font-size: 1.5rem; font-weight: bold; color: var(--color-light); }
+    nav a { margin-left: 25px; font-size: 1rem; text-transform: uppercase; transition: all 0.3s; }
+    nav a.active {
+      color: var(--color-secondary);
+      border-bottom: 2px solid var(--color-secondary);
+      padding-bottom: 5px;
+    }
+
+    .lang-switch {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      z-index: 101;
+    }
+    .lang-switch button {
+      background: #222;
+      color: var(--color-text);
+      padding: 5px 10px;
+      border: 1px solid #333;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .lang-switch button:hover { background: #333; }
+    .lang-switch button.active {
+      background: var(--color-primary);
+      color: var(--color-dark);
+      border-color: var(--color-primary);
+    }
+
+    .lang-en { display: none; }
+    .lang-my { display: inline; }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .btn-primary { background: var(--color-primary); color: var(--color-dark); }
+    .btn-primary:hover { background: var(--color-secondary); }
+    .btn-secondary { background: var(--color-secondary); color: var(--color-dark); }
+    .btn-outline {
+      background: transparent; color: var(--color-primary);
+      border: 2px solid var(--color-primary);
+    }
+    .btn-outline:hover { background: var(--color-primary); color: var(--color-dark); }
+    .large-btn { font-size: 1.1rem; padding: 15px 30px; margin-top: 20px; }
+
+    #hero {
+      height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+      url('https://i.ibb.co/N7PQLcC/cyber-bg.jpg');
+      background-size: cover; background-position: center;
+      padding-top: 70px; text-align: center;
+    }
+    .profile-logo {
+      width: 150px; height: 150px; border-radius: 50%;
+      border: 5px solid var(--color-primary); object-fit: cover;
+      margin-bottom: 20px; box-shadow: var(--glow-shadow);
+      transition: all 0.3s ease;
+    }
+    .profile-logo:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(0,255,192,0.8);
+    }
+    .hero-content h1 {
+      font-size: 3.5rem; margin-bottom: 10px;
+      color: var(--color-primary);
+      text-shadow: 0 0 10px rgba(0,255,192,0.3);
+    }
+    .hero-content h2 { font-size: 1.8rem; color: var(--color-secondary); margin-bottom: 15px; }
+    .hero-content p { font-style: italic; color: #a0a0a0; max-width: 600px; margin: 0 auto 30px; }
+
+    .section-padding { padding: 80px 0; }
+    .bg-darker { background-color: #1a1a1a; }
+    .text-center { text-align: center; }
+    .section-title {
+      font-size: 2.2rem; text-align: center; margin-bottom: 50px;
+      border-bottom: 3px solid var(--color-primary);
+      display: inline-block; padding-bottom: 10px;
+    }
+
+    .card-grid {
+      display: flex; gap: 30px; justify-content: center; flex-wrap: wrap;
+    }
+    .card {
+      background: #1e1e1e; padding: 30px; border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5); max-width: 350px; text-align: center;
+      border-bottom: 5px solid var(--color-primary);
+      transition: transform 0.3s ease, border-bottom-color 0.3s ease;
+    }
+    .card:hover { transform: translateY(-10px); border-bottom-color: var(--color-secondary); }
+    .icon-large { font-size: 3rem; color: var(--color-primary); margin-bottom: 15px; }
+
+    .service-list { list-style: none; font-size: 1.2rem; max-width: 600px; margin: 40px auto; }
+    .service-list li {
+      padding: 15px 0; border-bottom: 1px dashed #333; display: flex; align-items: center;
+    }
+    .service-list li i { color: var(--color-primary); margin-right: 15px; font-size: 1.5rem; }
+
+    .contact-grid {
+      display: flex; justify-content: space-around; gap: 30px;
+      margin-top: 30px; flex-wrap: wrap;
+    }
+    .contact-info-box {
+      background: #1e1e1e; padding: 30px; border-radius: 10px;
+      flex-basis: 45%; min-width: 300px; text-align: center; border: 1px solid #333;
+    }
+    .email-placeholder { margin: 15px 0; font-style: italic; color: #777; }
+
+    footer {
+      background: #0d0d0d; color: #888; padding: 20px 0; font-size: 0.9rem; border-top: 1px solid #333;
+    }
+    .social-links a { color: #888; margin: 0 10px; }
+    .social-links a:hover { color: var(--color-primary); }
+
+    @media (max-width: 768px) {
+      .nav-flex { flex-direction: column; text-align: center; }
+      .card-grid, .contact-grid { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LANGUAGE SWITCH -->
+  <div class="lang-switch">
+    <button id="lang-my-btn" class="active">MY</button>
+    <button id="lang-en-btn">EN</button>
+  </div>
+
+  <!-- HEADER -->
+  <header id="main-header">
+    <div class="container nav-flex">
+      <div class="logo-area"><span class="logo-text">AIO**BOSSBABY**</span></div>
+      <nav>
+        <a href="#hero">Home</a>
+        <a href="#courses">Courses</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-content">
+      <img src="https://i.ibb.co/fdkyFk9W/IMG-20251010-031652-603.jpg" class="profile-logo" alt="BossBaby">
+      <h1>𝐌𝐫.𝐁𝐨𝐬𝐬𝐁𝐚𝐛𝐲</h1>
+      <h2>Ethical Hacker & App Developer</h2>
+      <p>꧁•⊹٭Securing the Digital Future through Software & Network Tech٭⊹•꧂</p>
+      <a href="#contact" class="btn btn-primary large-btn"><i class="fas fa-handshake"></i> Project Collaboration</a>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section id="courses" class="section-padding">
+    <div class="container text-center">
+      <h3 class="section-title">Courses (Knowledge Transfer)</h3>
+      <div class="card-grid">
+        <div class="card">
+          <i class="fas fa-user-shield icon-large"></i>
+          <h4>Cybersecurity Fundamentals</h4>
+          <p>Learn digital defense, protection methods, and penetration testing.</p>
+        </div>
+        <div class="card">
+          <i class="fas fa-mobile-alt icon-large"></i>
+          <h4>Advanced App Development</h4>
+          <p>Modern mobile app creation with top-tier security and performance.</p>
+        </div>
+        <div class="card">
+          <i class="fas fa-laptop-code icon-large"></i>
+          <h4>Ethical Hacking Workshop</h4>
+          <p>Hands-on ethical hacking — uncover system vulnerabilities legally.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section-padding bg-darker">
+    <div class="container">
+      <h3 class="section-title">Contact (Stakeholder Engagement)</h3>
+      <div class="contact-grid">
+        <div class="contact-info-box">
+          <h4><i class="fab fa-telegram"></i> Telegram</h4>
+          <p>Chat directly for collaborations.</p>
+          <a href="https://t.me/aiobossbaby" target="_blank" class="btn btn-secondary">@aiobossbaby</a>
+        </div>
+        <div class="contact-info-box">
+          <h4><i class="fas fa-envelope"></i> Email</h4>
+          <p>Send project inquiries (Premium Tier)</p>
+          <p class="email-placeholder">aiobabyboss.ieee@domain.com</p>
+          <button class="btn btn-outline" onclick="promptForEmail()">Send Email</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container text-center">
+      <p>&copy; 2025 𝐌𝐫.𝐁𝐨𝐬𝐬𝐁𝐚𝐛𝐲. All Rights Reserved | Securing The Digital Future.</p>
+      <div class="social-links">
+        <a href="https://t.me/mrbossbabyinfo" target="_blank"><i class="fab fa-telegram fa-2x"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Language Toggle
+    const myBtn = document.getElementById("lang-my-btn");
+    const enBtn = document.getElementById("lang-en-btn");
+    const langMy = document.querySelectorAll(".lang-my");
+    const langEn = document.querySelectorAll(".lang-en");
+    myBtn.addEventListener("click", () => {
+      myBtn.classList.add("active");
+      enBtn.classList.remove("active");
+      langMy.forEach(el => el.style.display = "inline");
+      langEn.forEach(el => el.style.display = "none");
+    });
+    enBtn.addEventListener("click", () => {
+      enBtn.classList.add("active");
+      myBtn.classList.remove("active");
+      langMy.forEach(el => el.style.display = "none");
+      langEn.forEach(el => el.style.display = "inline");
+    });
+
+    // Scroll spy for nav highlight
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll("nav a");
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const top = window.scrollY;
+        const offset = sec.offsetTop - 150;
+        const height = sec.offsetHeight;
+        if (top >= offset && top < offset + height) current = sec.getAttribute("id");
+      });
+      navLinks.forEach(a => {
+        a.classList.remove("active");
+        if (a.getAttribute("href") === `#${current}`) a.classList.add("active");
+      });
+    });
+
+    // Fake email function
+    function promptForEmail() {
+      alert("Email feature coming soon 💌 — stay tuned Boss!");
+    }
+  </script>
+</body>
+</html>
