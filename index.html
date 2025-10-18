@@ -1,605 +1,243 @@
 <!DOCTYPE html>
 <html lang="my">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>𝐌𝐫.𝐁𝐨𝐬𝐬𝐁𝐚𝐛𝐲 - Ethical Hacker & App Developer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
-    <style>
-        /* GLOBAL STYLES & RESETS */
-        :root {
-            /* High-Contrast/Cyber Color Scheme */
-            --color-primary: #00FFC0; /* Neon Mint/Cyan - The Pop */
-            --color-secondary: #FF4D4D; /* Neon Red - The Alert/Hacker Accent */
-            --color-dark: #0A0A0A; /* Pure Black - The Deepest Dark */
-            --color-light: #f4f4f4;
-            --color-text: #E0E0E0;
-            --color-bg-subtle: #151515; /* New: Darker section background */
-            --color-border-accent: rgba(0, 255, 192, 0.3);
-            --font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>𝐌𝐫.𝐁𝐨𝐬𝐬𝐁𝐚𝐛𝐲 - Ethical Hacker & App Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root {
+      --neon-cyan: #00ffc6;
+      --neon-pink: #ff0080;
+      --dark-bg: #060606;
+      --light-text: #e8e8e8;
+      --bg-glass: rgba(255, 255, 255, 0.05);
+      --border-glow: rgba(0, 255, 198, 0.3);
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: var(--font-stack);
-            background-color: var(--color-dark);
-            color: var(--color-text);
-            line-height: 1.6;
-            scroll-behavior: smooth;
-        }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--dark-bg);
+      color: var(--light-text);
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
 
-        .container {
-            width: 85%;
-            max-width: 1200px;
-            margin: auto;
-            overflow: hidden;
-        }
+    /* Neon Gradient Header */
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(90deg, rgba(0,255,198,0.05), rgba(255,0,128,0.05));
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-glow);
+      padding: 1rem 0;
+    }
 
-        a {
-            color: var(--color-primary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+    .nav-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 85%;
+      margin: auto;
+    }
 
-        a:hover {
-            color: var(--color-light);
-        }
+    .logo-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: var(--neon-cyan);
+      letter-spacing: 1px;
+    }
 
-        /* === HEADER & NAVIGATION (NEW BLUR EFFECT) === */
-        #main-header {
-            background: rgba(10, 10, 10, 0.85); 
-            backdrop-filter: blur(5px); 
-            -webkit-backdrop-filter: blur(5px);
-            position: fixed;
-            width: 100%;
-            z-index: 100;
-            padding: 15px 0;
-            border-bottom: 1px solid var(--color-border-accent);
-        }
+    nav a {
+      color: var(--light-text);
+      margin-left: 25px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
 
-        .nav-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    nav a:hover, nav a.active {
+      color: var(--neon-pink);
+      text-shadow: 0 0 10px var(--neon-pink);
+    }
 
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--color-light);
-        }
+    /* Hero Section */
+    #hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('https://i.ibb.co/fdkyFk9W/IMG-20251010-031652-603.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding-top: 5rem;
+    }
 
-        nav a {
-            margin-left: 25px;
-            font-size: 1rem;
-            text-transform: uppercase;
-            transition: all 0.3s;
-        }
+    .profile-logo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 4px solid var(--neon-cyan);
+      box-shadow: 0 0 25px var(--neon-cyan);
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
 
-        /* === LANGUAGE TOGGLE STYLES === */
-        .lang-switch {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-            z-index: 101;
-        }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3.8rem;
+      color: var(--neon-cyan);
+      text-shadow: 0 0 25px rgba(0,255,198,0.7);
+      animation: fadeInDown 2s ease;
+    }
 
-        .lang-switch button {
-            background: #222;
-            color: var(--color-text);
-            padding: 5px 10px;
-            border: 1px solid #333;
-            cursor: pointer;
-            border-radius: 4px;
-            font-weight: bold;
-            transition: background 0.3s, border-color 0.3s;
-        }
+    h2.typing {
+      color: var(--neon-pink);
+      font-family: 'Consolas', monospace;
+      font-size: 1.6rem;
+      margin: 10px 0 20px;
+      border-right: 2px solid var(--neon-pink);
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 4s steps(30, end) 1s forwards, blink 0.7s infinite;
+    }
 
-        .lang-switch button:hover {
-            background: #333;
-        }
+    @keyframes typing { from { width: 0 } to { width: 100% } }
+    @keyframes blink { 50% { border-color: transparent; } }
+    @keyframes fadeInDown { 0% { opacity: 0; transform: translateY(-20px);} 100% { opacity: 1; transform: translateY(0);} }
 
-        .lang-switch button.active {
-            background: var(--color-primary);
-            color: var(--color-dark);
-            border-color: var(--color-primary);
-        }
+    .btn {
+      background: transparent;
+      border: 2px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      padding: 12px 25px;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
 
-        /* UTILITY CLASSES for language switching (Default: hide English) */
-        .lang-en { display: none; } 
-        .lang-my { display: inline; }
+    .btn:hover {
+      background: var(--neon-cyan);
+      color: #000;
+      box-shadow: 0 0 20px var(--neon-cyan);
+    }
 
-        /* === BUTTONS === */
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+    /* Section Title */
+    .section-title {
+      font-size: 2.2rem;
+      text-align: center;
+      margin: 60px 0 30px;
+      font-family: 'Orbitron', sans-serif;
+      color: var(--neon-cyan);
+      text-shadow: 0 0 10px var(--neon-cyan);
+    }
 
-        .btn-primary {
-            background: var(--color-primary);
-            color: var(--color-dark);
-        }
+    /* Glassmorphism Cards */
+    .card-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
 
-        .btn-primary:hover {
-            background: var(--color-secondary);
-        }
+    .card {
+      background: var(--bg-glass);
+      border: 1px solid var(--border-glow);
+      border-radius: 12px;
+      padding: 30px;
+      width: 300px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      transition: all 0.4s ease;
+      animation: fadeUp 1.5s ease;
+    }
 
-        .btn-secondary {
-            background: var(--color-secondary);
-            color: var(--color-dark);
-        }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
 
-        .btn-secondary:hover {
-            background: var(--color-primary);
-        }
+    .card:hover {
+      border-color: var(--neon-pink);
+      box-shadow: 0 0 25px var(--neon-pink);
+      transform: translateY(-8px);
+    }
 
-        .btn-outline {
-            background: transparent;
-            color: var(--color-primary);
-            border: 2px solid var(--color-primary);
-        }
+    .card i {
+      font-size: 2.5rem;
+      color: var(--neon-cyan);
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px var(--neon-cyan);
+    }
 
-        .btn-outline:hover {
-            background: var(--color-primary);
-            color: var(--color-dark);
-        }
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      background: linear-gradient(90deg, rgba(0,255,198,0.05), rgba(255,0,128,0.05));
+      border-top: 1px solid var(--border-glow);
+      margin-top: 50px;
+      font-size: 0.9rem;
+      color: #999;
+    }
 
-        .large-btn {
-            font-size: 1.1rem;
-            padding: 15px 30px;
-            margin-top: 20px;
-        }
+    footer a { color: var(--neon-cyan); }
 
-        /* === SECTIONS & UTILITIES === */
-        .section-padding {
-            padding: 80px 0;
-        }
-
-        .bg-darker {
-            background-color: #0d0d0d; /* Even darker section */
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .section-title {
-            /* NEW: Double Underline & Larger Font */
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 5px double var(--color-primary); 
-            display: inline-block;
-            padding-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        /* === HERO SECTION SPECIFIC (MORE COMMANDING LOOK) === */
-        #hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('cyber-bg.jpg'); /* Placeholder image */
-            background-size: cover;
-            background-position: center;
-            padding-top: 70px; 
-        }
-
-        .profile-logo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 5px solid var(--color-primary);
-            object-fit: cover;
-            margin-bottom: 20px;
-            /* NEW: Stronger Glow */
-            box-shadow: 0 0 35px rgba(0, 255, 192, 0.7); 
-        }
-
-        .hero-content h1 {
-            font-size: 4rem; 
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            color: var(--color-primary);
-            text-shadow: 0 0 10px rgba(0, 255, 192, 0.4);
-        }
-
-        .hero-content h2 {
-            font-family: 'Consolas', 'Courier New', monospace; /* Code font */
-            font-size: 1.6rem;
-            color: var(--color-secondary);
-            margin-bottom: 15px;
-        }
-
-        .hero-content p {
-            font-style: italic;
-            color: #a0a0a0;
-            max-width: 600px;
-            margin: 0 auto 30px;
-        }
-
-        /* === COURSES / SERVICES CARD GRID (DEEPER SHADOWS & ACCENTS) === */
-        .card-grid {
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            background: var(--color-bg-subtle); 
-            padding: 30px;
-            border-radius: 5px; /* Sharper corners */
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
-            max-width: 350px;
-            text-align: center;
-            border: 1px solid #333; 
-            border-left: 5px solid var(--color-primary); /* Key Accent */
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-left-color 0.4s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px); 
-            border-left-color: var(--color-secondary);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 255, 192, 0.3); 
-        }
-
-        .icon-large {
-            font-size: 3.5rem;
-            color: var(--color-primary);
-            margin-bottom: 15px;
-            text-shadow: 0 0 5px var(--color-primary); /* Icon glow */
-        }
-
-        /* === SERVICES LIST === */
-        .service-list {
-            list-style: none;
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 40px auto;
-        }
-
-        .service-list li {
-            padding: 15px 0;
-            border-bottom: 1px dashed #333;
-            display: flex;
-            align-items: center;
-        }
-
-        .service-list li i {
-            color: var(--color-primary);
-            margin-right: 15px;
-            font-size: 1.5rem;
-        }
-
-        /* === CONTACT SECTION === */
-        .contact-grid {
-            display: flex;
-            justify-content: space-around;
-            gap: 30px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        .contact-info-box {
-            background: var(--color-bg-subtle);
-            padding: 30px;
-            border-radius: 10px;
-            flex-basis: 45%;
-            min-width: 300px;
-            text-align: center;
-            border: 1px solid var(--color-border-accent);
-        }
-
-        .contact-info-box h4 {
-            color: var(--color-secondary);
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-        }
-
-        .email-placeholder {
-            margin: 15px 0;
-            font-style: italic;
-            color: var(--color-primary); /* Changed color to make the high-tier email pop */
-            padding: 10px;
-            border: 1px dashed var(--color-primary); 
-            font-weight: bold; /* Make the cover email stand out */
-        }
-
-        /* === PAYMENT SLOT === */
-        .form-style-placeholder {
-            padding: 40px;
-            border: 3px dashed var(--color-primary);
-            background: var(--color-bg-subtle);
-            margin-top: 30px;
-            border-radius: 10px;
-        }
-
-        /* === FOOTER === */
-        footer {
-            background: #0d0d0d;
-            color: #888;
-            padding: 20px 0;
-            font-size: 0.9rem;
-            border-top: 1px solid #333;
-        }
-
-        .social-links {
-            margin-top: 10px;
-        }
-
-        .social-links a {
-            color: #888;
-            margin: 0 10px;
-        }
-
-        .social-links a:hover {
-            color: var(--color-primary);
-        }
-
-        /* Media Queries for Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .nav-flex {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            nav a {
-                margin: 0 10px;
-                font-size: 0.9rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-content h2 {
-                font-size: 1.4rem;
-            }
-
-            .card-grid, .contact-grid {
-                flex-direction: column;
-            }
-
-            .contact-info-box {
-                flex-basis: 100%;
-            }
-        }
-        
-        /* JS active class styling for navigation links */
-        nav a.active {
-            color: var(--color-secondary) !important;
-            border-bottom: 2px solid var(--color-secondary);
-            padding-bottom: 5px;
-        }
-    </style>
+    @media (max-width: 768px) {
+      h1 { font-size: 2.8rem; }
+      h2.typing { font-size: 1.2rem; }
+      .card { width: 90%; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="lang-switch">
-        <button id="lang-my-btn" class="active">MY</button>
-        <button id="lang-en-btn">EN</button>
+  <header>
+    <div class="nav-flex">
+      <div class="logo-text">AIO<span style="color:var(--neon-pink)">BOSSBABY</span></div>
+      <nav>
+        <a href="#hero" class="active">Home</a>
+        <a href="#courses">Courses</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
+  </header>
 
-    <header id="main-header">
-        <div class="container nav-flex">
-            <div class="logo-area">
-                <span class="logo-text">AIO**BOSSBABY**</span>
-            </div>
-            <nav>
-                <a href="#hero"><span class="lang-my">မူလစာမျက်နှာ</span><span class="lang-en">Home</span></a>
-                <a href="#courses"><span class="lang-my">သင်တန်းများ</span><span class="lang-en">Courses</span></a>
-                <a href="#services"><span class="lang-my">ဝန်ဆောင်မှုများ</span><span class="lang-en">Services</span></a>
-                <a href="#contact"><span class="lang-my">ဆက်သွယ်ရန်</span><span class="lang-en">Contact</span></a>
-            </nav>
-        </div>
-    </header>
+  <section id="hero">
+    <img src="https://i.ibb.co/fdkyFk9W/IMG-20251010-031652-603.jpg" class="profile-logo" alt="MrBossBaby Logo">
+    <h1>𝐌𝐫.𝐁𝐨𝐬𝐬𝐁𝐚𝐛𝐲</h1>
+    <h2 class="typing">Ethical Hacker & App Developer</h2>
+    <a href="#contact" class="btn"><i class="fas fa-handshake"></i> Let's Collaborate</a>
+  </section>
 
-    <section id="hero" class="hero-bg text-center">
-        <div class="hero-content">
-            <img src="https://i.ibb.co/fdkyFk9W/IMG-20251010-031652-603.jpg" alt="𝐌𝐫.𝐁𝐨𝐬𝐬𝐁𝐚𝐛𝐲 Official Logo" class="profile-logo">
-            
-            <h1>𝐌𝐫.𝐁𝐨𝐬𝐬𝐁𝐚𝐛𝐲</h1>
-            <h2><span class="lang-my">Ethical Hacker & App Developer</span><span class="lang-en">Ethical Hacker & App Developer</span></h2>
-            <p>
-                <span class="lang-my">꧁•⊹٭ဒစ်ဂျစ်တယ် နည်းပညာဖြင့် အနာဂတ်ကို လုံခြုံစေရန် ဆော့ဝဲ၊ ကွန်ရက် နည်းပညာဖြင့် ဆန်းသစ်တီထွင်မှုများကို ဖန်တီးခြင်းနှင့် သင်ကြားပို့ချခြင်း٭⊹•꧂</span>
-                <span class="lang-en">꧁•⊹٭Securing the Digital Future through Software & Network Tech, and Building Mobile Innovations٭⊹•꧂</span>
-            </p>
-            <a href="#contact" class="btn btn-primary large-btn">
-                <i class="fas fa-handshake"></i> <span class="lang-my">ပရောဂျက်များ ပူးပေါင်းဆောင်ရွက်ရန်</span><span class="lang-en">Project Collaboration **[Execute Now]**</span>
-            </a>
-        </div>
-    </section>
+  <section id="courses">
+    <h3 class="section-title">Courses</h3>
+    <div class="card-grid">
+      <div class="card">
+        <i class="fas fa-user-shield"></i>
+        <h4>Cybersecurity Fundamentals</h4>
+        <p>Learn digital defense, threat mitigation, and penetration testing techniques.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-mobile-alt"></i>
+        <h4>Advanced App Development</h4>
+        <p>Create secure, enterprise-grade mobile apps for modern platforms.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-laptop-code"></i>
+        <h4>Ethical Hacking Workshop</h4>
+        <p>Master vulnerability assessment and legal exploit discovery methods.</p>
+      </div>
+    </div>
+  </section>
 
-    <section id="courses" class="section-padding">
-        <div class="container">
-            <h3 class="section-title">
-                <span class="lang-my">သင်တန်းများ **(Knowledge Transfer)**</span>
-                <span class="lang-en">Courses **(Knowledge Transfer)**</span>
-            </h3>
-            <div class="card-grid">
-                <div class="card">
-                    <i class="fas fa-user-shield icon-large"></i>
-                    <h4><span class="lang-my">Cybersecurity အခြေခံ</span><span class="lang-en">Cybersecurity Fundamentals</span></h4>
-                    <p>
-                        <span class="lang-my">ဒစ်ဂျစ်တယ်လုံခြုံရေး အခြေခံများ၊ ကာကွယ်ရေးနည်းလမ်းများနှင့် ထိုးဖောက်ဝင်ရောက်မှု စစ်ဆေးခြင်း။</span>
-                        <span class="lang-en">Fundamentals of digital security, defense strategies, and penetration testing.</span>
-                    </p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-mobile-alt icon-large"></i>
-                    <h4><span class="lang-my">အဆင့်မြင့် Mobile App ဖန်တီးမှု</span><span class="lang-en">Advanced App Development</span></h4>
-                    <p>
-                        <span class="lang-my">ခေတ်မီ Mobile Application များ ဖန်တီးခြင်း၊ လုံခြုံရေးနှင့် ပုံမှန်လုပ်ငန်းသုံး ကဏ္ဍများ။</span>
-                        <span class="lang-en">Creating modern mobile applications, focusing on security and enterprise features.</span>
-                    </p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-laptop-code icon-large"></i>
-                    <h4><span class="lang-my">Ethical Hacking Workshop</span><span class="lang-en">Ethical Hacking Workshop</span></h4>
-                    <p>
-                        <span class="lang-my">ဥပဒေဘောင်အတွင်းမှ ထိုးဖောက်ရှာဖွေမှုများ၊ လုံခြုံရေးအားနည်းချက် ဖော်ထုတ်နည်းများ။</span>
-                        <span class="lang-en">Legal vulnerability assessments and methods for identifying security weaknesses.</span>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <footer>
+    <p>© 2025 𝐌𝐫.𝐁𝐨𝐬𝐬𝐁𝐚𝐛𝐲 | Securing The Digital Future</p>
+    <a href="https://t.me/mrbossbabyinfo" target="_blank"><i class="fab fa-telegram fa-2x"></i></a>
+  </footer>
 
-    <section id="services" class="section-padding bg-darker">
-        <div class="container">
-            <h3 class="section-title">
-                <span class="lang-my">ဝန်ဆောင်မှုများ **(Value Proposition)**</span>
-                <span class="lang-en">Services **(Value Proposition)**</span>
-            </h3>
-            <ul class="service-list">
-                <li><i class="fas fa-check-circle"></i> <span class="lang-my">**Cybersecurity Audits:** စနစ်ပိုင်း လုံခြုံရေးစစ်ဆေးမှုများ။</span><span class="lang-en">**Cybersecurity Audits:** Comprehensive system security checks.</span></li>
-                <li><i class="fas fa-check-circle"></i> <span class="lang-my">**Secure Mobile App Development:** လုံခြုံစိတ်ချရသော မိုဘိုင်းအပ်များ ဖန်တီးခြင်း။</span><span class="lang-en">**Secure Mobile App Development:** Creating robust and secure mobile apps.</span></li>
-                <li><i class="fas fa-check-circle"></i> <span class="lang-my">**Full-Stack Digital Solutions:** ထိပ်ဆုံးမှ အောက်ဆုံးထိ ပြည့်စုံသော ဒစ်ဂျစ်တယ်ဖြေရှင်းချက်များ။</span><span class="lang-en">**Full-Stack Digital Solutions:** Complete end-to-end digital solutions.</span></li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="payment-slot" class="section-padding">
-        <div class="container text-center">
-            <h3 class="section-title">
-                <span class="lang-my">ဝန်ဆောင်ခ ပေးချေရန် **(Financial Flow)**</span>
-                <span class="lang-en">Payment Section **(Financial Flow)**</span>
-            </h3>
-            <p class="subtitle">
-                <span class="lang-my">ငွေသွင်းရန် **HTML Form** ကို ဤနေရာတွင် ထည့်သွင်းပေးပါ။</span>
-                <span class="lang-en">Insert your **HTML Payment Form** here.</span>
-            </p>
-            <div id="payment-form-container" class="form-style-placeholder">
-                <p><span class="lang-my">--- **သင့်ရဲ့ ငွေပေးချေမှု ဖောင်ပုံစံ (HTML) နေရာ** ---</span><span class="lang-en">--- **Your Payment Form (HTML) Slot** ---</span></p>
-                <p><span class="lang-my">*(ဥပမာ- ဘဏ်အကောင့်နံပါတ်၊ QR code ပုံများ ထည့်သွင်းရန်)*</span><span class="lang-en">*(e.g., Bank details, QR codes)*</span></p>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="section-padding bg-darker">
-        <div class="container">
-            <h3 class="section-title">
-                <span class="lang-my">ဆက်သွယ်ရန် **(Stakeholder Engagement)**</span>
-                <span class="lang-en">Contact **(Stakeholder Engagement)**</span>
-            </h3>
-            
-            <div class="contact-grid">
-                <div class="contact-info-box">
-                    <h4><i class="fas fa-comment-alt"></i> <span class="lang-my">တိုက်ရိုက်ချန်နယ် (Telegram)</span><span class="lang-en">Direct Channel (Telegram)</span></h4>
-                    <p>
-                        <span class="lang-my">Telegram မှ တိုက်ရိုက်ဆက်သွယ်ပါ။ အမြန်ဆုံး အကြောင်းပြန်ပါမည်။</span>
-                        <span class="lang-en">Contact directly via Telegram. Fastest response time guaranteed.</span>
-                    </p>
-                    <a href="https://t.me/aiobossbaby" target="_blank" class="btn btn-secondary"><i class="fab fa-telegram-plane"></i> @aiobossbaby</a>
-                </div>
-
-                <div class="contact-info-box">
-                    <h4><i class="fas fa-envelope"></i> <span class="lang-my">အီးမေးလ် စုံစမ်းမေးမြန်းခြင်း</span><span class="lang-en">Email Inquiry</span></h4>
-                    <p>
-                        <span class="lang-my">စီမံကိန်းအသေးစိတ်များအတွက် Email ပို့ရန် (ပရီမီယံအဆင့်)</span>
-                        <span class="lang-en">For detailed project inquiries (Premium Tier)</span>
-                    </p>
-                    <p class="email-placeholder">**info@aiybossbaby.online**</p>
-                    <button class="btn btn-outline" onclick="promptForEmail()">
-                        <i class="fas fa-paper-plane"></i> <span class="lang-my">Email ပေးပို့ရန် **(Execute)**</span><span class="lang-en">Send Email **(Execute)**</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container text-center">
-            <p>
-                <span class="lang-my">&copy; 2025 𝐌𝐫.𝐁𝐨𝐬𝐬𝐁𝐚𝐛𝐲. မူပိုင်ခွင့် အားလုံးရှိပါသည်။ **|** ဒစ်ဂျစ်တယ် အနာဂတ်ကို လုံခြုံစေခြင်း။</span>
-                <span class="lang-en">&copy; 2025 𝐌𝐫.𝐁𝐨ss𝐁𝐚𝐛𝐲. All Rights Reserved. **|** Securing The Digital Future.</span>
-            </p>
-            <div class="social-links">
-                <a href="https://t.me/mrbossbabyinfo" target="_blank" aria-label="Telegram Channel"><i class="fab fa-telegram fa-2x"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Language Toggle Functionality ---
-            const myanmarBtn = document.getElementById('lang-my-btn');
-            const englishBtn = document.getElementById('lang-en-btn');
-            const myanmarText = document.querySelectorAll('.lang-my');
-            const englishText = document.querySelectorAll('.lang-en');
-
-            const switchLanguage = (lang) => {
-                if (lang === 'my') {
-                    myanmarText.forEach(el => el.style.display = 'inline');
-                    englishText.forEach(el => el.style.display = 'none');
-                    myanmarBtn.classList.add('active');
-                    englishBtn.classList.remove('active');
-                    document.documentElement.lang = 'my';
-                    localStorage.setItem('langPref', 'my');
-                } else if (lang === 'en') {
-                    myanmarText.forEach(el => el.style.display = 'none');
-                    englishText.forEach(el => el.style.display = 'inline');
-                    englishBtn.classList.add('active');
-                    myanmarBtn.classList.remove('active');
-                    document.documentElement.lang = 'en';
-                    localStorage.setItem('langPref', 'en');
-                }
-            };
-
-            // Check for saved preference on load
-            const savedLang = localStorage.getItem('langPref');
-            if (savedLang) {
-                switchLanguage(savedLang);
-            } else {
-                switchLanguage('my'); 
-            }
-
-            // Event Listeners for buttons
-            myanmarBtn.addEventListener('click', () => switchLanguage('my'));
-            englishBtn.addEventListener('click', () => switchLanguage('en'));
-
-            // --- Scroll Navigation Highlight (Active Link) ---
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('nav a');
-
-            window.addEventListener('scroll', () => {
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 150; 
-                    if (scrollY >= sectionTop) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(a => {
-                    a.classList.remove('active');
-                    if (a.getAttribute('href').includes(current)) {
-                        a.classList.add('active');
-                    }
-                });
-            });
-
-            // --- Email Function (UPDATED: Direct mailto link) ---
-            window.promptForEmail = function() {
-                // Directs user to send an email to the actual GMail address
-                window.location.href = "mailto:zaaitai462@gmail.com"; 
-            };
-        });
-    </script>
 </body>
 </html>
