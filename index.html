@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>𝐌𝐫.𝐁𝐨𝐬𝐬𝐁𝐚𝐛𝐲 - Ethical Hacker & App Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>CYBER DEFENSE FUNDAMENTALS (Android & Web)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght[email protected];600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     :root {
@@ -14,6 +14,7 @@
       --light-text: #e8e8e8;
       --bg-glass: rgba(255, 255, 255, 0.05);
       --border-glow: rgba(0, 255, 198, 0.3);
+      --module-bg: rgba(0, 255, 198, 0.08); /* Light cyan background for modules */
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,7 +25,10 @@
       color: var(--light-text);
       scroll-behavior: smooth;
       overflow-x: hidden;
+      line-height: 1.6;
     }
+
+    a { text-decoration: none; }
 
     /* Neon Gradient Header */
     header {
@@ -42,23 +46,25 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 85%;
+      width: 90%;
+      max-width: 1200px;
       margin: auto;
     }
 
     .logo-text {
       font-family: 'Orbitron', sans-serif;
-      font-size: 1.8rem;
+      font-size: 1.5rem; /* Adjusted for mobile */
       color: var(--neon-cyan);
       letter-spacing: 1px;
     }
 
     nav a {
       color: var(--light-text);
-      margin-left: 25px;
+      margin-left: 15px; /* Adjusted for mobile */
       text-transform: uppercase;
       transition: all 0.3s;
       font-weight: 500;
+      font-size: 0.85rem;
     }
 
     nav a:hover, nav a.active {
@@ -68,38 +74,39 @@
 
     /* Hero Section */
     #hero {
-      height: 100vh;
-      background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('https://i.ibb.co/fdkyFk9W/IMG-20251010-031652-603.jpg') center/cover no-repeat;
+      min-height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95)), url('https://placehold.co/1200x800/060606/00ffc6?text=CYBER+GRID') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
       text-align: center;
-      padding-top: 5rem;
+      padding: 8rem 1rem 2rem;
     }
 
     .profile-logo {
-      width: 160px;
-      height: 160px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       border: 4px solid var(--neon-cyan);
-      box-shadow: 0 0 25px var(--neon-cyan);
+      box-shadow: 0 0 20px var(--neon-cyan);
       object-fit: cover;
       margin-bottom: 20px;
     }
 
     h1 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 3.8rem;
+      font-size: 2.5rem; /* Adjusted for mobile */
       color: var(--neon-cyan);
-      text-shadow: 0 0 25px rgba(0,255,198,0.7);
+      text-shadow: 0 0 15px rgba(0,255,198,0.7);
       animation: fadeInDown 2s ease;
+      margin-top: 10px;
     }
 
     h2.typing {
       color: var(--neon-pink);
       font-family: 'Consolas', monospace;
-      font-size: 1.6rem;
+      font-size: 1.2rem;
       margin: 10px 0 20px;
       border-right: 2px solid var(--neon-pink);
       white-space: nowrap;
@@ -120,6 +127,8 @@
       border-radius: 6px;
       font-weight: bold;
       transition: all 0.3s ease;
+      display: inline-block;
+      margin-top: 20px;
     }
 
     .btn:hover {
@@ -130,47 +139,138 @@
 
     /* Section Title */
     .section-title {
-      font-size: 2.2rem;
+      font-size: 2rem;
       text-align: center;
-      margin: 60px 0 30px;
+      margin: 40px 0 20px;
       font-family: 'Orbitron', sans-serif;
       color: var(--neon-cyan);
       text-shadow: 0 0 10px var(--neon-cyan);
     }
 
-    /* Glassmorphism Cards */
-    .card-grid {
+    /* Course Ad Specific Styling */
+    .course-ad-container {
+      width: 95%;
+      max-width: 800px;
+      margin: 0 auto 50px;
+      background: var(--bg-glass);
+      border: 2px solid var(--neon-cyan);
+      border-radius: 15px;
+      padding: 25px 20px;
+      box-shadow: 0 0 30px rgba(0, 255, 198, 0.4);
+    }
+
+    .course-header {
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 2px dashed var(--neon-pink);
+      margin-bottom: 20px;
+    }
+
+    .course-header h4 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      color: var(--neon-pink);
+      margin-top: 5px;
+    }
+    
+    .course-header h3 {
+      font-size: 2.2rem;
+      color: var(--neon-cyan);
+      text-shadow: 0 0 8px var(--neon-cyan);
+    }
+
+    .course-feature-list {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-    }
-
-    .card {
-      background: var(--bg-glass);
-      border: 1px solid var(--border-glow);
-      border-radius: 12px;
-      padding: 30px;
-      width: 300px;
+      justify-content: space-around;
+      gap: 15px;
+      margin-bottom: 30px;
       text-align: center;
-      backdrop-filter: blur(10px);
-      transition: all 0.4s ease;
-      animation: fadeUp 1.5s ease;
     }
 
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
-
-    .card:hover {
-      border-color: var(--neon-pink);
-      box-shadow: 0 0 25px var(--neon-pink);
-      transform: translateY(-8px);
+    .feature-item {
+      flex: 1 1 45%;
+      background: var(--module-bg);
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 3px solid var(--neon-cyan);
     }
+    .feature-item p { margin: 0; font-size: 0.9rem; }
+    .feature-item strong { color: var(--neon-pink); font-size: 1.1rem; }
 
-    .card i {
-      font-size: 2.5rem;
+    .syllabus-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.4rem;
       color: var(--neon-cyan);
-      margin-bottom: 15px;
-      text-shadow: 0 0 10px var(--neon-cyan);
+      margin-top: 30px;
+      border-bottom: 1px solid var(--border-glow);
+      padding-bottom: 10px;
+    }
+
+    .syllabus-list {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 15px;
+    }
+
+    .syllabus-list li {
+      padding: 10px 0;
+      border-bottom: 1px dotted rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .syllabus-list li:last-child { border-bottom: none; }
+
+    .syllabus-icon {
+      color: var(--neon-pink);
+      margin-right: 10px;
+      font-size: 1.2rem;
+      line-height: 1.5;
+    }
+
+    .price-box {
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+      border: 3px solid var(--neon-pink);
+      border-radius: 10px;
+      background: rgba(255, 0, 128, 0.1);
+      box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);
+    }
+    .price-box h5 {
+        font-size: 1.8rem;
+        color: var(--neon-cyan);
+        margin-bottom: 5px;
+    }
+    .original-price {
+        text-decoration: line-through;
+        color: #aaa;
+        font-size: 1rem;
+        margin-right: 15px;
+    }
+    .promo-price {
+        color: var(--neon-cyan);
+        font-size: 2.2rem;
+        font-family: 'Orbitron', sans-serif;
+    }
+    .promo-note {
+        color: var(--neon-pink);
+        font-weight: 600;
+        margin-top: 10px;
+    }
+
+    .enroll-btn {
+      margin-top: 25px;
+      padding: 15px 35px;
+      font-size: 1.1rem;
+      border-color: var(--neon-pink);
+      color: var(--neon-pink);
+    }
+    .enroll-btn:hover {
+      background: var(--neon-pink);
+      color: var(--dark-bg);
+      box-shadow: 0 0 25px var(--neon-pink);
     }
 
     footer {
@@ -184,11 +284,17 @@
     }
 
     footer a { color: var(--neon-cyan); }
+    footer .social-icons { margin-top: 10px; }
+    footer .social-icons i { margin: 0 10px; }
 
-    @media (max-width: 768px) {
-      h1 { font-size: 2.8rem; }
-      h2.typing { font-size: 1.2rem; }
-      .card { width: 90%; }
+    @media (max-width: 600px) {
+      .logo-text { font-size: 1.3rem; }
+      nav { display: none; } /* Hide complex nav on very small screens for simplicity */
+      h1 { font-size: 2rem; }
+      h2.typing { font-size: 1rem; }
+      .course-header h3 { font-size: 1.8rem; }
+      .feature-item { flex: 1 1 100%; }
+      .promo-price { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -199,45 +305,145 @@
       <div class="logo-text">AIO<span style="color:var(--neon-pink)">BOSSBABY</span></div>
       <nav>
         <a href="#hero" class="active">Home</a>
-        <a href="#courses">Courses</a>
-        <a href="#services">Services</a>
+        <a href="#course-details">Course</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
   <section id="hero">
-    <img src="https://i.ibb.co/fdkyFk9W/IMG-20251010-031652-603.jpg" class="profile-logo" alt="MrBossBaby Logo">
+    <!-- Placeholder image, replace with your logo image -->
+    <img src="https://placehold.co/120x120/00ffc6/060606?text=BB" class="profile-logo" alt="MrBossBaby Logo">
     <h1>𝐌𝐫.𝐁𝐨𝐬𝐬𝐁𝐚𝐛𝐲</h1>
     <h2 class="typing">Ethical Hacker & App Developer</h2>
-    <a href="#contact" class="btn"><i class="fas fa-handshake"></i> Let's Collaborate</a>
+    <a href="#course-details" class="btn"><i class="fas fa-microchip"></i> Start Your Cyber Journey</a>
   </section>
 
-  <section id="courses">
-    <h3 class="section-title">Courses</h3>
-    <div class="card-grid">
-      <div class="card">
-        <i class="fas fa-user-shield"></i>
-        <h4>Cybersecurity Fundamentals</h4>
-        <p>Learn digital defense, threat mitigation, and penetration testing techniques.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-mobile-alt"></i>
-        <h4>Advanced App Development</h4>
-        <p>Create secure, enterprise-grade mobile apps for modern platforms.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-laptop-code"></i>
-        <h4>Ethical Hacking Workshop</h4>
-        <p>Master vulnerability assessment and legal exploit discovery methods.</p>
-      </div>
+  <section id="course-details">
+    <h3 class="section-title">သင်တန်းကြေညာ - The Cyber Defense Fundamentals</h3>
+
+    <div class="course-ad-container">
+        <div class="course-header">
+            <h3>CYBER DEFENSE FUNDAMENTALS</h3>
+            <h4>(Android & Web Security Testing Basics)</h4>
+            <p style="margin-top: 10px;">🛡️ ကိုယ့် App/Website တွေကို ကိုယ်တိုင် ဘယ်လို ကာကွယ်မလဲဆိုတာ Hackers တွေရဲ့ မျက်လုံးနဲ့ မြင်အောင် သင်ယူပါ။</p>
+        </div>
+
+        <div class="course-feature-list">
+            <div class="feature-item">
+                <p>သင်တန်းကာလ</p>
+                <strong><i class="fas fa-clock"></i> ၁ လ (4 Weeks)</strong>
+            </div>
+            <div class="feature-item">
+                <p>Focus</p>
+                <strong><i class="fas fa-user-check"></i> Defensive & Ethical Hacking</strong>
+            </div>
+            <div class="feature-item">
+                <p>ပံ့ပိုးမှု</p>
+                <strong><i class="fab fa-telegram-plane"></i> VIP Discussion Group</strong>
+            </div>
+            <div class="feature-item">
+                <p>လိုအပ်ချက်</p>
+                <strong><i class="fas fa-mobile-alt"></i> Android Phone (or PC) + စိတ်ဝင်စားမှု</strong>
+            </div>
+        </div>
+
+        <h3 class="syllabus-title"><i class="fas fa-scroll"></i> ပို့ချမည့် သင်ခန်းစာ အကျဉ်းချုပ် (Module Outline)</h3>
+        
+        <p style="margin-bottom: 15px; font-size: 0.95rem; color: #aaa;">"ကာကွယ်ခြင်းရဲ့ အခြေခံဟာ တိုက်ခိုက်ခြင်းကို နားလည်ခြင်း ဖြစ်ပါတယ်"</p>
+
+        <ul class="syllabus-list">
+            <li>
+                <span class="syllabus-icon"><i class="fas fa-fingerprint"></i></span>
+                <div>
+                    <strong>Module 1: Social Engineering & Phishing Analysis</strong><br>
+                    Phishing Campaign တွေ ဘယ်လို စတင်လဲ၊ ဘယ်လို နည်းစနစ်တွေ သုံးလဲ သိရှိပြီး၊ ၎င်းတို့ကို ကာကွယ်ဖို့အတွက် Two-Factor Authentication (2FA) Setup များနဲ့ User ကို ပညာပေးခြင်း နည်းလမ်းများ။
+                </div>
+            </li>
+            <li>
+                <span class="syllabus-icon"><i class="fas fa-bug"></i></span>
+                <div>
+                    <strong>Module 2: Malware Detection & Endpoint Hardening</strong><br>
+                    RAT/Spyware ကဲ့သို့သော Malware တွေရဲ့ လုပ်ဆောင်ပုံ၊ Android စနစ်များတွင် မသမာသော App များကို စစ်ဆေးရှာဖွေခြင်းနှင့် စနစ် လုံခြုံရေး မြှင့်တင်ခြင်း (System Hardening) နည်းလမ်းများ။
+                </div>
+            </li>
+            <li>
+                <span class="syllabus-icon"><i class="fas fa-globe"></i></span>
+                <div>
+                    <strong>Module 3: Secure Web Development & Testing</strong><br>
+                    Website များရဲ့ Input Validation နှင့် Data Security ချို့ယွင်းချက်များကို ကိုယ်တိုင် စမ်းသပ်ခြင်း (Pentesting Basics) နှင့် ကာကွယ်ရေး Codes များ ရေးသားခြင်း။ (HTML/CSS Fundamentals for Security Focus)
+                </div>
+            </li>
+            <li>
+                <span class="syllabus-icon"><i class="fas fa-shield-alt"></i></span>
+                <div>
+                    <strong>Module 4: Mobile App Security Audit</strong><br>
+                    Android App များရဲ့ Data Access Control နှင့် File Permissions များကို စမ်းသပ် စစ်ဆေးခြင်း။ Data Leakage ဖြစ်ပေါ်နိုင်သော အချက်များကို ရှာဖွေကာကွယ်နည်းများ။
+                </div>
+            </li>
+            <li>
+                <span class="syllabus-icon"><i class="fas fa-terminal"></i></span>
+                <div>
+                    <strong>Module 5: Scripting for Security Automation</strong><br>
+                    စနစ် စစ်ဆေးခြင်း (Auditing)၊ Network Scanning နှင့် Security Log Analysis လုပ်ရန်အတွက် Bash Shell Scripting နှင့် Python Programming အခြေခံများကို အသုံးပြု၍ Utility Tools များ ဖန်တီးခြင်း။
+                </div>
+            </li>
+        </ul>
+
+        <h3 class="syllabus-title"><i class="fas fa-users"></i> Hack for Defense Class ကို ဘယ်သူတွေ တက်သင့်လဲ...?</h3>
+        <p style="margin-top: 15px;">
+            အတွေ့အကြုံ ဗဟုသုတအဖြစ် စူးစမ်းလိုသူတွေ၊ နည်းပညာနယ်ပယ်မှာ **လုံခြုံရေး ပညာရှင် (Security Professional)** အဖြစ် ရပ်တည်လိုသူတွေ၊ ကိုယ်ပိုင် App/Website တွေကို တကယ်တမ်း **ကာကွယ်နိုင်စွမ်း** ရှိချင်တဲ့ Developer တွေအတွက် ရည်ရွယ်ပါတယ်။
+        </p>
+
+        <div class="price-box">
+            <h5>သင်တန်းကြေး</h5>
+            <span class="original-price">၂၀၀,၀၀၀ ကျပ်</span>
+            <span class="promo-price">၁၅၀,၀၀၀ ကျပ်</span>
+            <p class="promo-note"><i class="fas fa-bolt"></i> Wellcome Promotion အနေဖြင့် ပထမဆုံး သင်တန်းသား ၃ ဦး အတွက်သာ (30% Discount)!</p>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="https://t.me/mrbossbabyinfo" target="_blank" class="btn enroll-btn">
+                <i class="fab fa-telegram-plane"></i> သင်တန်းအပ်ရန် နှိပ်ပါ။
+            </a>
+            <p style="margin-top: 15px; font-size: 0.9rem; color: var(--neon-pink);">လူဦးရေ ကန့်သတ်ထားပါသည်။</p>
+        </div>
     </div>
   </section>
 
-  <footer>
+  <footer id="contact">
     <p>© 2025 𝐌𝐫.𝐁𝐨𝐬𝐬𝐁𝐚𝐛𝐲 | Securing The Digital Future</p>
-    <a href="https://t.me/mrbossbabyinfo" target="_blank"><i class="fab fa-telegram fa-2x"></i></a>
+    <div class="social-icons">
+      <a href="https://t.me/mrbossbabyinfo" target="_blank"><i class="fab fa-telegram fa-2x"></i></a>
+      <!-- Add other social links if needed -->
+    </div>
   </footer>
+
+  <script>
+    // JavaScript for the typing effect
+    document.addEventListener('DOMContentLoaded', () => {
+        const typingElement = document.querySelector('.typing');
+        const text = typingElement.textContent;
+        typingElement.textContent = '';
+        typingElement.style.width = '0';
+        
+        let i = 0;
+        const speed = 100; // Typing speed in ms
+
+        function typeWriter() {
+            if (i < text.length) {
+                typingElement.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+        
+        // Ensure the typing animation starts after the CSS animation delay
+        // The CSS animation handles the width property for the cursor effect
+        setTimeout(typeWriter, 1000); 
+    });
+  </script>
 
 </body>
 </html>
+
