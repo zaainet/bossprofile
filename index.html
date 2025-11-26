@@ -3,445 +3,958 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CYBER DEFENSE FUNDAMENTALS (Android & Web)</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght[email protected];600&display=swap" rel="stylesheet">
+  <title>𝐌𝐫.𝐁𝐨𝐬𝐬𝐁𝐚𝐛𝐲 | Professional Tech & Security Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     :root {
       --neon-cyan: #00ffc6;
       --neon-pink: #ff0080;
-      --dark-bg: #060606;
-      --light-text: #e8e8e8;
-      --bg-glass: rgba(255, 255, 255, 0.05);
-      --border-glow: rgba(0, 255, 198, 0.3);
-      --module-bg: rgba(0, 255, 198, 0.08); /* Light cyan background for modules */
+      --dark-bg: #0a0a0a;
+      --card-bg: #111;
+      --text-main: #e8e8e8;
+      --text-muted: #a0a0a0;
+      --border-glow: rgba(0, 255, 198, 0.2);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    
     body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--dark-bg);
-      color: var(--light-text);
-      scroll-behavior: smooth;
-      overflow-x: hidden;
+      font-family: 'Poppins', 'Padauk', sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-main);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    a { text-decoration: none; }
+    a { text-decoration: none; color: inherit; }
 
-    /* Neon Gradient Header */
-    header {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 100;
-      background: linear-gradient(90deg, rgba(0,255,198,0.05), rgba(255,0,128,0.05));
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border-glow);
-      padding: 1rem 0;
-    }
-
-    .nav-flex {
+    /* --- Navigation --- */
+    nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 90%;
-      max-width: 1200px;
-      margin: auto;
+      padding: 1.2rem 5%;
+      background: rgba(10, 10, 10, 0.95);
+      border-bottom: 1px solid var(--border-glow);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
     }
 
-    .logo-text {
+    .brand {
       font-family: 'Orbitron', sans-serif;
-      font-size: 1.5rem; /* Adjusted for mobile */
+      font-size: 1.4rem;
+      font-weight: 700;
       color: var(--neon-cyan);
-      letter-spacing: 1px;
+    }
+    .brand span { color: var(--neon-pink); }
+
+    .nav-links {
+        display: flex;
+        align-items: center;
     }
 
-    nav a {
-      color: var(--light-text);
-      margin-left: 15px; /* Adjusted for mobile */
-      text-transform: uppercase;
-      transition: all 0.3s;
+    .nav-links a {
+      margin-left: 20px;
+      font-size: 0.9rem;
       font-weight: 500;
-      font-size: 0.85rem;
+      transition: 0.3s;
+    }
+    .nav-links a:hover { color: var(--neon-cyan); }
+
+    /* Language Button Style */
+    #lang-toggle-btn {
+        background: var(--neon-pink);
+        color: var(--dark-bg);
+        border: none;
+        padding: 5px 10px;
+        margin-left: 20px;
+        border-radius: 4px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+        font-family: 'Padauk', sans-serif;
+        font-size: 0.85rem;
+    }
+    #lang-toggle-btn:hover {
+        background: var(--neon-cyan);
     }
 
-    nav a:hover, nav a.active {
-      color: var(--neon-pink);
-      text-shadow: 0 0 10px var(--neon-pink);
-    }
-
-    /* Hero Section */
-    #hero {
-      min-height: 100vh;
-      background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95)), url('https://placehold.co/1200x800/060606/00ffc6?text=CYBER+GRID') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
+    /* --- Hero Section --- */
+    .hero {
+      margin-top: 80px;
+      padding: 60px 20px;
       text-align: center;
-      padding: 8rem 1rem 2rem;
+      background: linear-gradient(180deg, rgba(0,255,198,0.02) 0%, rgba(0,0,0,0) 100%);
     }
 
-    .profile-logo {
-      width: 120px;
-      height: 120px;
+    .profile-img-container {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 20px;
+    }
+
+    .profile-img {
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
-      border: 4px solid var(--neon-cyan);
-      box-shadow: 0 0 20px var(--neon-cyan);
       object-fit: cover;
+      border: 3px solid var(--neon-cyan);
+      box-shadow: 0 0 30px rgba(0, 255, 198, 0.3);
+      animation: pulseGlow 3s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 20px rgba(0, 255, 198, 0.3); }
+      50% { box-shadow: 0 0 40px rgba(0, 255, 198, 0.6); }
+      100% { box-shadow: 0 0 20px rgba(0, 255, 198, 0.3); }
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.2rem;
+      margin-bottom: 5px;
+      background: linear-gradient(to right, #fff, #aaa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--neon-pink);
+      font-weight: 600;
+      font-size: 1.1rem;
       margin-bottom: 20px;
     }
 
-    h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2.5rem; /* Adjusted for mobile */
-      color: var(--neon-cyan);
-      text-shadow: 0 0 15px rgba(0,255,198,0.7);
-      animation: fadeInDown 2s ease;
-      margin-top: 10px;
+    .hero-bio {
+      max-width: 600px;
+      margin: 0 auto;
+      color: var(--text-muted);
+      font-size: 0.95rem;
     }
 
-    h2.typing {
-      color: var(--neon-pink);
-      font-family: 'Consolas', monospace;
-      font-size: 1.2rem;
-      margin: 10px 0 20px;
-      border-right: 2px solid var(--neon-pink);
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0;
-      animation: typing 4s steps(30, end) 1s forwards, blink 0.7s infinite;
+    /* --- Section Headers --- */
+    .section-header {
+      text-align: center;
+      margin: 60px 0 30px;
+      padding: 0 20px;
     }
-
-    @keyframes typing { from { width: 0 } to { width: 100% } }
-    @keyframes blink { 50% { border-color: transparent; } }
-    @keyframes fadeInDown { 0% { opacity: 0; transform: translateY(-20px);} 100% { opacity: 1; transform: translateY(0);} }
-
-    .btn {
-      background: transparent;
-      border: 2px solid var(--neon-cyan);
+    .section-header h2 {
+      font-size: 1.8rem;
       color: var(--neon-cyan);
-      padding: 12px 25px;
-      border-radius: 6px;
-      font-weight: bold;
-      transition: all 0.3s ease;
+      margin-bottom: 10px;
       display: inline-block;
+      border-bottom: 2px solid var(--neon-pink);
+      padding-bottom: 5px;
+      cursor: pointer; /* Hint for interaction but subtle */
+      user-select: none;
+    }
+
+    /* --- Services Grid --- */
+    .services-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 0 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: 0.3s;
+      text-align: center;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--neon-cyan);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    }
+
+    .service-icon {
+      font-size: 2.5rem;
+      color: var(--neon-pink);
+      margin-bottom: 15px;
+    }
+
+    .service-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .service-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* --- Courses List --- */
+    .courses-container {
+      padding: 0 5%;
+      max-width: 1000px;
+      margin: 0 auto 50px;
+    }
+
+    .course-item {
+      background: var(--card-bg);
+      border-radius: 15px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      border: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .course-item:hover {
+      border-color: var(--neon-pink);
+      box-shadow: 0 0 15px rgba(255, 0, 128, 0.15);
+    }
+
+    .course-img-wrapper {
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .course-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .course-item:hover .course-img {
+      transform: scale(1.05);
+    }
+
+    .course-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--neon-cyan);
+      color: #000;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      z-index: 2;
+    }
+
+    .course-content {
+      padding: 25px;
+    }
+
+    .course-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .course-meta {
+      display: flex;
+      gap: 15px;
+      font-size: 0.9rem;
+      color: var(--neon-cyan);
+      margin-bottom: 15px;
+    }
+
+    .course-description {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      border-left: 3px solid var(--neon-pink);
+      padding-left: 15px;
+    }
+
+    .syllabus-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 25px;
+    }
+
+    .tag {
+      background: rgba(255,255,255,0.05);
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      color: #ccc;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .price {
+      font-size: 1.3rem;
+      color: var(--neon-cyan);
+      font-weight: 700;
+    }
+    .old-price {
+      font-size: 0.9rem;
+      text-decoration: line-through;
+      color: #666;
+      margin-left: 5px;
+    }
+
+    .btn-detail {
+      background: transparent;
+      border: 1px solid var(--neon-pink);
+      color: var(--neon-pink);
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .btn-detail:hover {
+      background: var(--neon-pink);
+      color: white;
+    }
+
+    /* --- Footer --- */
+    footer {
+      background: #050505;
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .social-links {
+      margin-bottom: 20px;
+    }
+    .social-links a {
+      font-size: 1.5rem;
+      margin: 0 10px;
+      color: var(--text-muted);
+      transition: 0.3s;
+    }
+    .social-links a:hover { color: var(--neon-cyan); transform: scale(1.2); }
+
+    /* --- ADMIN PANEL STYLES (HIDDEN BY DEFAULT) --- */
+    .admin-controls {
+      display: none; /* Hidden */
+      padding: 0 5%;
+      max-width: 1000px;
+      margin: 0 auto 20px;
+      text-align: right;
+    }
+    
+    .admin-controls.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .btn-admin {
+      background: #222;
+      border: 1px dashed var(--neon-cyan);
+      color: var(--neon-cyan);
+      padding: 10px 20px;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .btn-admin:hover {
+      background: rgba(0, 255, 198, 0.1);
+    }
+
+    .delete-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(255, 0, 0, 0.7);
+      color: white;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 100;
+      display: none; /* Hidden by default */
+      align-items: center;
+      justify-content: center;
+    }
+    
+    body.admin-mode .delete-btn {
+      display: flex;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.9);
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+      background-color: #111;
+      margin: 10% auto;
+      padding: 30px;
+      border: 1px solid var(--neon-cyan);
+      width: 90%;
+      max-width: 500px;
+      border-radius: 10px;
+      box-shadow: 0 0 50px rgba(0,255,198,0.2);
+    }
+
+    .modal h3 {
+      color: var(--neon-cyan);
+      font-family: 'Orbitron', sans-serif;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      display: block;
+      color: #aaa;
+      margin-bottom: 5px;
+      font-size: 0.9rem;
+    }
+
+    .input-group input, .input-group textarea {
+      width: 100%;
+      background: #000;
+      border: 1px solid #333;
+      color: white;
+      padding: 10px;
+      border-radius: 4px;
+      font-family: inherit;
+    }
+
+    .input-group input:focus, .input-group textarea:focus {
+      outline: none;
+      border-color: var(--neon-pink);
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
       margin-top: 20px;
     }
 
-    .btn:hover {
-      background: var(--neon-cyan);
-      color: #000;
-      box-shadow: 0 0 20px var(--neon-cyan);
-    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* Section Title */
-    .section-title {
-      font-size: 2rem;
-      text-align: center;
-      margin: 40px 0 20px;
-      font-family: 'Orbitron', sans-serif;
-      color: var(--neon-cyan);
-      text-shadow: 0 0 10px var(--neon-cyan);
-    }
-
-    /* Course Ad Specific Styling */
-    .course-ad-container {
-      width: 95%;
-      max-width: 800px;
-      margin: 0 auto 50px;
-      background: var(--bg-glass);
-      border: 2px solid var(--neon-cyan);
-      border-radius: 15px;
-      padding: 25px 20px;
-      box-shadow: 0 0 30px rgba(0, 255, 198, 0.4);
-    }
-
-    .course-header {
-      text-align: center;
-      padding-bottom: 20px;
-      border-bottom: 2px dashed var(--neon-pink);
-      margin-bottom: 20px;
-    }
-
-    .course-header h4 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.5rem;
-      color: var(--neon-pink);
-      margin-top: 5px;
-    }
-    
-    .course-header h3 {
-      font-size: 2.2rem;
-      color: var(--neon-cyan);
-      text-shadow: 0 0 8px var(--neon-cyan);
-    }
-
-    .course-feature-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      gap: 15px;
-      margin-bottom: 30px;
-      text-align: center;
-    }
-
-    .feature-item {
-      flex: 1 1 45%;
-      background: var(--module-bg);
-      padding: 15px;
-      border-radius: 8px;
-      border-left: 3px solid var(--neon-cyan);
-    }
-    .feature-item p { margin: 0; font-size: 0.9rem; }
-    .feature-item strong { color: var(--neon-pink); font-size: 1.1rem; }
-
-    .syllabus-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.4rem;
-      color: var(--neon-cyan);
-      margin-top: 30px;
-      border-bottom: 1px solid var(--border-glow);
-      padding-bottom: 10px;
-    }
-
-    .syllabus-list {
-      list-style-type: none;
-      padding: 0;
-      margin-top: 15px;
-    }
-
-    .syllabus-list li {
-      padding: 10px 0;
-      border-bottom: 1px dotted rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: flex-start;
-    }
-
-    .syllabus-list li:last-child { border-bottom: none; }
-
-    .syllabus-icon {
-      color: var(--neon-pink);
-      margin-right: 10px;
-      font-size: 1.2rem;
-      line-height: 1.5;
-    }
-
-    .price-box {
-      text-align: center;
-      padding: 20px;
-      margin-top: 30px;
-      border: 3px solid var(--neon-pink);
-      border-radius: 10px;
-      background: rgba(255, 0, 128, 0.1);
-      box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);
-    }
-    .price-box h5 {
-        font-size: 1.8rem;
-        color: var(--neon-cyan);
-        margin-bottom: 5px;
-    }
-    .original-price {
-        text-decoration: line-through;
-        color: #aaa;
-        font-size: 1rem;
-        margin-right: 15px;
-    }
-    .promo-price {
-        color: var(--neon-cyan);
-        font-size: 2.2rem;
-        font-family: 'Orbitron', sans-serif;
-    }
-    .promo-note {
-        color: var(--neon-pink);
-        font-weight: 600;
-        margin-top: 10px;
-    }
-
-    .enroll-btn {
-      margin-top: 25px;
-      padding: 15px 35px;
-      font-size: 1.1rem;
-      border-color: var(--neon-pink);
-      color: var(--neon-pink);
-    }
-    .enroll-btn:hover {
-      background: var(--neon-pink);
-      color: var(--dark-bg);
-      box-shadow: 0 0 25px var(--neon-pink);
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px 0;
-      background: linear-gradient(90deg, rgba(0,255,198,0.05), rgba(255,0,128,0.05));
-      border-top: 1px solid var(--border-glow);
-      margin-top: 50px;
-      font-size: 0.9rem;
-      color: #999;
-    }
-
-    footer a { color: var(--neon-cyan); }
-    footer .social-icons { margin-top: 10px; }
-    footer .social-icons i { margin: 0 10px; }
-
-    @media (max-width: 600px) {
-      .logo-text { font-size: 1.3rem; }
-      nav { display: none; } /* Hide complex nav on very small screens for simplicity */
-      h1 { font-size: 2rem; }
-      h2.typing { font-size: 1rem; }
-      .course-header h3 { font-size: 1.8rem; }
-      .feature-item { flex: 1 1 100%; }
-      .promo-price { font-size: 1.8rem; }
+    /* --- Responsive Tweaks --- */
+    @media (min-width: 768px) {
+      .course-item {
+        flex-direction: row;
+        height: 320px;
+      }
+      .course-img-wrapper {
+        width: 40%;
+        height: 100%;
+      }
+      .course-content {
+        width: 60%;
+        overflow-y: auto;
+      }
+      .hero h1 { font-size: 3rem; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="nav-flex">
-      <div class="logo-text">AIO<span style="color:var(--neon-pink)">BOSSBABY</span></div>
-      <nav>
-        <a href="#hero" class="active">Home</a>
-        <a href="#course-details">Course</a>
-        <a href="#contact">Contact</a>
-      </nav>
+  <!-- Navigation -->
+  <nav>
+    <div class="brand">BOSS<span>BABY</span></div>
+    <div class="nav-links">
+      <a href="#services" data-i18n="nav_services">ဝန်ဆောင်မှု</a>
+      <a href="#classes" data-i18n="nav_classes">သင်တန်းများ</a>
+      <a href="https://t.me/mrbossbabyinfo" data-i18n="nav_contact">ဆက်သွယ်ရန်</a>
+      <button id="lang-toggle-btn" onclick="switchLanguage()">English</button>
     </div>
-  </header>
+  </nav>
 
-  <section id="hero">
-    <!-- Placeholder image, replace with your logo image -->
-    <img src="https://placehold.co/120x120/00ffc6/060606?text=BB" class="profile-logo" alt="MrBossBaby Logo">
+  <!-- Hero / Profile Section -->
+  <section class="hero">
+    <div class="profile-img-container">
+      <img src="https://i.ibb.co/6R4h49JB/IMG-20251010-031652-603.jpg" alt="Boss Baby Profile" class="profile-img">
+    </div>
     <h1>𝐌𝐫.𝐁𝐨𝐬𝐬𝐁𝐚𝐛𝐲</h1>
-    <h2 class="typing">Ethical Hacker & App Developer</h2>
-    <a href="#course-details" class="btn"><i class="fas fa-microchip"></i> Start Your Cyber Journey</a>
-  </section>
-
-  <section id="course-details">
-    <h3 class="section-title">သင်တန်းကြေညာ - The Cyber Defense Fundamentals</h3>
-
-    <div class="course-ad-container">
-        <div class="course-header">
-            <h3>CYBER DEFENSE FUNDAMENTALS</h3>
-            <h4>(Android & Web Security Testing Basics)</h4>
-            <p style="margin-top: 10px;">🛡️ ကိုယ့် App/Website တွေကို ကိုယ်တိုင် ဘယ်လို ကာကွယ်မလဲဆိုတာ Hackers တွေရဲ့ မျက်လုံးနဲ့ မြင်အောင် သင်ယူပါ။</p>
-        </div>
-
-        <div class="course-feature-list">
-            <div class="feature-item">
-                <p>သင်တန်းကာလ</p>
-                <strong><i class="fas fa-clock"></i> ၁ လ (4 Weeks)</strong>
-            </div>
-            <div class="feature-item">
-                <p>Focus</p>
-                <strong><i class="fas fa-user-check"></i> Defensive & Ethical Hacking</strong>
-            </div>
-            <div class="feature-item">
-                <p>ပံ့ပိုးမှု</p>
-                <strong><i class="fab fa-telegram-plane"></i> VIP Discussion Group</strong>
-            </div>
-            <div class="feature-item">
-                <p>လိုအပ်ချက်</p>
-                <strong><i class="fas fa-mobile-alt"></i> Android Phone (or PC) + စိတ်ဝင်စားမှု</strong>
-            </div>
-        </div>
-
-        <h3 class="syllabus-title"><i class="fas fa-scroll"></i> ပို့ချမည့် သင်ခန်းစာ အကျဉ်းချုပ် (Module Outline)</h3>
-        
-        <p style="margin-bottom: 15px; font-size: 0.95rem; color: #aaa;">"ကာကွယ်ခြင်းရဲ့ အခြေခံဟာ တိုက်ခိုက်ခြင်းကို နားလည်ခြင်း ဖြစ်ပါတယ်"</p>
-
-        <ul class="syllabus-list">
-            <li>
-                <span class="syllabus-icon"><i class="fas fa-fingerprint"></i></span>
-                <div>
-                    <strong>Module 1: Social Engineering & Phishing Analysis</strong><br>
-                    Phishing Campaign တွေ ဘယ်လို စတင်လဲ၊ ဘယ်လို နည်းစနစ်တွေ သုံးလဲ သိရှိပြီး၊ ၎င်းတို့ကို ကာကွယ်ဖို့အတွက် Two-Factor Authentication (2FA) Setup များနဲ့ User ကို ပညာပေးခြင်း နည်းလမ်းများ။
-                </div>
-            </li>
-            <li>
-                <span class="syllabus-icon"><i class="fas fa-bug"></i></span>
-                <div>
-                    <strong>Module 2: Malware Detection & Endpoint Hardening</strong><br>
-                    RAT/Spyware ကဲ့သို့သော Malware တွေရဲ့ လုပ်ဆောင်ပုံ၊ Android စနစ်များတွင် မသမာသော App များကို စစ်ဆေးရှာဖွေခြင်းနှင့် စနစ် လုံခြုံရေး မြှင့်တင်ခြင်း (System Hardening) နည်းလမ်းများ။
-                </div>
-            </li>
-            <li>
-                <span class="syllabus-icon"><i class="fas fa-globe"></i></span>
-                <div>
-                    <strong>Module 3: Secure Web Development & Testing</strong><br>
-                    Website များရဲ့ Input Validation နှင့် Data Security ချို့ယွင်းချက်များကို ကိုယ်တိုင် စမ်းသပ်ခြင်း (Pentesting Basics) နှင့် ကာကွယ်ရေး Codes များ ရေးသားခြင်း။ (HTML/CSS Fundamentals for Security Focus)
-                </div>
-            </li>
-            <li>
-                <span class="syllabus-icon"><i class="fas fa-shield-alt"></i></span>
-                <div>
-                    <strong>Module 4: Mobile App Security Audit</strong><br>
-                    Android App များရဲ့ Data Access Control နှင့် File Permissions များကို စမ်းသပ် စစ်ဆေးခြင်း။ Data Leakage ဖြစ်ပေါ်နိုင်သော အချက်များကို ရှာဖွေကာကွယ်နည်းများ။
-                </div>
-            </li>
-            <li>
-                <span class="syllabus-icon"><i class="fas fa-terminal"></i></span>
-                <div>
-                    <strong>Module 5: Scripting for Security Automation</strong><br>
-                    စနစ် စစ်ဆေးခြင်း (Auditing)၊ Network Scanning နှင့် Security Log Analysis လုပ်ရန်အတွက် Bash Shell Scripting နှင့် Python Programming အခြေခံများကို အသုံးပြု၍ Utility Tools များ ဖန်တီးခြင်း။
-                </div>
-            </li>
-        </ul>
-
-        <h3 class="syllabus-title"><i class="fas fa-users"></i> Hack for Defense Class ကို ဘယ်သူတွေ တက်သင့်လဲ...?</h3>
-        <p style="margin-top: 15px;">
-            အတွေ့အကြုံ ဗဟုသုတအဖြစ် စူးစမ်းလိုသူတွေ၊ နည်းပညာနယ်ပယ်မှာ **လုံခြုံရေး ပညာရှင် (Security Professional)** အဖြစ် ရပ်တည်လိုသူတွေ၊ ကိုယ်ပိုင် App/Website တွေကို တကယ်တမ်း **ကာကွယ်နိုင်စွမ်း** ရှိချင်တဲ့ Developer တွေအတွက် ရည်ရွယ်ပါတယ်။
-        </p>
-
-        <div class="price-box">
-            <h5>သင်တန်းကြေး</h5>
-            <span class="original-price">၂၀၀,၀၀၀ ကျပ်</span>
-            <span class="promo-price">၁၅၀,၀၀၀ ကျပ်</span>
-            <p class="promo-note"><i class="fas fa-bolt"></i> Wellcome Promotion အနေဖြင့် ပထမဆုံး သင်တန်းသား ၃ ဦး အတွက်သာ (30% Discount)!</p>
-        </div>
-
-        <div style="text-align: center;">
-            <a href="https://t.me/mrbossbabyinfo" target="_blank" class="btn enroll-btn">
-                <i class="fab fa-telegram-plane"></i> သင်တန်းအပ်ရန် နှိပ်ပါ။
-            </a>
-            <p style="margin-top: 15px; font-size: 0.9rem; color: var(--neon-pink);">လူဦးရေ ကန့်သတ်ထားပါသည်။</p>
-        </div>
+    <p>Ethical Hacker | Full Stack Developer | Instructor</p>
+    <div class="hero-bio">
+      <p id="hero-quote" data-i18n="hero_quote">"နည်းပညာဆိုတာ လူသားတွေရဲ့ လက်နက်ဖြစ်တယ်။ အဲ့ဒီလက်နက်ကို ဘယ်လို စနစ်တကျ၊ လုံခြုံစွာ ကိုင်တွယ်မလဲဆိုတာ ကျွန်တော်တို့ သင်ကြားပေးနေပါတယ်။"</p>
     </div>
   </section>
 
-  <footer id="contact">
-    <p>© 2025 𝐌𝐫.𝐁𝐨𝐬𝐬𝐁𝐚𝐛𝐲 | Securing The Digital Future</p>
-    <div class="social-icons">
-      <a href="https://t.me/mrbossbabyinfo" target="_blank"><i class="fab fa-telegram fa-2x"></i></a>
-      <!-- Add other social links if needed -->
+  <!-- Services Section -->
+  <section id="services">
+    <div class="section-header">
+      <h2>Professional Services</h2>
+      <p id="services-sub" style="color:#666; font-size: 0.9rem; margin-top:5px;" data-i18n="services_h2_sub">ကျွန်တော်တို့ ပေးစွမ်းနိုင်သော ကျွမ်းကျင်ဝန်ဆောင်မှုများ</p>
     </div>
+
+    <div class="services-container">
+      <div class="service-card">
+        <i class="fas fa-shield-alt service-icon"></i>
+        <h3 class="service-title">Security Consultation</h3>
+        <p class="service-desc" data-i18n="service1_desc">လုပ်ငန်းသုံး Website/App များ၏ လုံခြုံရေး အားနည်းချက်များကို ရှာဖွေစစ်ဆေးပေးခြင်း။</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-mobile-screen-button service-icon"></i>
+        <h3 class="service-title">App Development</h3>
+        <p class="service-desc" data-i18n="service2_desc">Android & iOS Application များကို ခေတ်မီ Design၊ မြင့်မားသော Performance ဖြင့် ရေးဆွဲပေးခြင်း။</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-globe service-icon"></i>
+        <h3 class="service-title">Web Solutions</h3>
+        <p class="service-desc" data-i18n="service3_desc">Personal Portfolio မှ E-commerce အထိ Web Application မျိုးစုံကို စိတ်တိုင်းကျ ဖန်တီးပေးခြင်း။</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Classes Section -->
+  <section id="classes">
+    <div class="section-header">
+      <!-- THIS IS THE TRIGGER ELEMENT FOR ADMIN PANEL -->
+      <h2 id="adminTrigger" title="Courses">Premium Online Classes</h2>
+      <p id="classes-sub" style="color:#666; font-size: 0.9rem; margin-top:5px;" data-i18n="classes_h2_sub">Professional တစ်ယောက်ဖြစ်ဖို့ လိုအပ်သော နည်းပညာများ</p>
+    </div>
+
+    <!-- Admin Controls (Hidden) -->
+    <div id="adminPanel" class="admin-controls">
+      <button class="btn-admin" onclick="openAddModal()"><i class="fas fa-plus"></i> <span data-i18n="admin_add">သင်တန်းအသစ်ထည့်ရန်</span></button>
+      <span id="admin-active-tag" style="color: var(--neon-pink); font-size: 0.8rem; margin-left: 10px;" data-i18n="admin_active">[ ADMIN MODE ဖွင့်ထားသည် ]</span>
+    </div>
+
+    <div class="courses-container" id="coursesList">
+      <!-- Courses will be rendered here by JavaScript -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="https://t.me/mrbossbabyinfo"><i class="fab fa-telegram"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+    </div>
+    <p style="color: #666; font-size: 0.8rem;">© 2025 Mr.BossBaby Academy. All Rights Reserved.</p>
+    <p id="footer-sub" style="color: #444; font-size: 0.7rem; margin-top:5px;">Empowering Myanmar's Digital Future.</p>
   </footer>
 
-  <script>
-    // JavaScript for the typing effect
-    document.addEventListener('DOMContentLoaded', () => {
-        const typingElement = document.querySelector('.typing');
-        const text = typingElement.textContent;
-        typingElement.textContent = '';
-        typingElement.style.width = '0';
-        
-        let i = 0;
-        const speed = 100; // Typing speed in ms
+  <!-- Admin Modal -->
+  <div id="addCourseModal" class="modal">
+    <div class="modal-content">
+      <h3 data-i18n="modal_h3">သင်တန်းအသစ်ထည့်သွင်းခြင်း</h3>
+      <div class="input-group">
+        <label data-i18n="modal_title_label">သင်တန်းခေါင်းစဉ်</label>
+        <input type="text" id="newTitle" placeholder="e.g. Python Masterclass">
+      </div>
+      <div class="input-group">
+        <label data-i18n="modal_img_label">ပုံလိပ်စာ (URL)</label>
+        <input type="text" id="newImg" placeholder="https://...">
+      </div>
+      <div class="input-group">
+        <label data-i18n="modal_badge_label">ကတ်ပြားစာသား</label>
+        <input type="text" id="newBadge" placeholder="e.g. New Arrival">
+      </div>
+      <div class="input-group">
+        <label data-i18n="modal_meta_label">သင်တန်းကြာချိန် & အမျိုးအစား</label>
+        <input type="text" id="newMeta" placeholder="e.g. 2 Months | Zoom Class">
+      </div>
+      <div class="input-group">
+        <label data-i18n="modal_desc_label">ဖော်ပြချက်</label>
+        <textarea id="newDesc" rows="3" placeholder="Course details..."></textarea>
+      </div>
+      <div class="input-group">
+        <label data-i18n="modal_tags_label">Tag များ (ကော်မာခြား)</label>
+        <input type="text" id="newTags" placeholder="Coding, Security, Web">
+      </div>
+      <div class="input-group">
+        <label data-i18n="modal_price_label">ဈေးနှုန်း (ကျပ်)</label>
+        <input type="text" id="newPrice" placeholder="100,000 Ks">
+      </div>
+      <div class="input-group">
+        <label data-i18n="modal_old_price_label">မူရင်းဈေးနှုန်း (စိတ်ကြိုက်)</label>
+        <input type="text" id="newOldPrice" placeholder="150,000 Ks">
+      </div>
+      <div class="modal-actions">
+        <button class="btn-detail" onclick="closeAddModal()" style="border-color: #666; color: #aaa;" data-i18n="modal_cancel">ဖျက်သိမ်းမည်</button>
+        <button class="btn-detail" onclick="saveNewCourse()" data-i18n="modal_save">သိမ်းဆည်းမည်</button>
+      </div>
+    </div>
+  </div>
 
-        function typeWriter() {
-            if (i < text.length) {
-                typingElement.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, speed);
+  <!-- Password Modal -->
+  <div id="passwordModal" class="modal">
+    <div class="modal-content" style="max-width: 300px; text-align: center;">
+      <h3 style="color: var(--neon-pink);" data-i18n="pass_h3"><i class="fas fa-user-secret"></i> လျှို့ဝှက်ဝင်ရောက်ခွင့်</h3>
+      <div class="input-group">
+        <input type="password" id="adminPass" placeholder="ဝင်ရောက်ခွင့်ကုတ်နံပါတ်" style="text-align: center; letter-spacing: 5px;">
+      </div>
+      <button class="btn-detail" onclick="checkPassword()" style="width: 100%;" data-i18n="pass_auth">စနစ်သို့ဝင်ရောက်မည်</button>
+    </div>
+  </div>
+
+  <script>
+    // --- TRANSLATION DATA ---
+    let currentLang = 'my';
+
+    const i18n = {
+      "en": {
+        "nav_services": "Services",
+        "nav_classes": "Classes",
+        "nav_contact": "Contact",
+        "hero_quote": "Technology is humanity's weapon. We teach how to handle that weapon systematically and securely.",
+        "services_h2_sub": "Our Specialized Professional Services",
+        "service1_desc": "Auditing and testing for security vulnerabilities in commercial Websites/Apps.",
+        "service2_desc": "Developing Android & iOS Applications with modern design and high performance.",
+        "service3_desc": "Custom creation of various Web Applications, from Personal Portfolios to E-commerce.",
+        "classes_h2_sub": "Essential Skills to Become a Professional",
+        "enroll_now": "Enroll Now",
+        "admin_add": "Add New Course",
+        "admin_active": "[ ADMIN MODE ACTIVE ]",
+        "modal_h3": "Add New Course",
+        "modal_title_label": "Course Title",
+        "modal_img_label": "Image URL",
+        "modal_badge_label": "Badge Text",
+        "modal_meta_label": "Duration & Type",
+        "modal_desc_label": "Description",
+        "modal_tags_label": "Tags (comma separated)",
+        "modal_price_label": "Price (Ks)",
+        "modal_old_price_label": "Old Price (Optional)",
+        "modal_cancel": "Cancel",
+        "modal_save": "Save Course",
+        "pass_h3": "RESTRICTED ACCESS",
+        "pass_input": "Enter Access Code",
+        "pass_auth": "AUTHENTICATE",
+      },
+      "my": {
+        "nav_services": "ဝန်ဆောင်မှု",
+        "nav_classes": "သင်တန်းများ",
+        "nav_contact": "ဆက်သွယ်ရန်",
+        "hero_quote": "နည်းပညာဆိုတာ လူသားတွေရဲ့ လက်နက်ဖြစ်တယ်။ အဲ့ဒီလက်နက်ကို ဘယ်လို စနစ်တကျ၊ လုံခြုံစွာ ကိုင်တွယ်မလဲဆိုတာ ကျွန်တော်တို့ သင်ကြားပေးနေပါတယ်။",
+        "services_h2_sub": "ကျွန်တော်တို့ ပေးစွမ်းနိုင်သော ကျွမ်းကျင်ဝန်ဆောင်မှုများ",
+        "service1_desc": "လုပ်ငန်းသုံး Website/App များ၏ လုံခြုံရေး အားနည်းချက်များကို ရှာဖွေစစ်ဆေးပေးခြင်း။",
+        "service2_desc": "Android & iOS Application များကို ခေတ်မီ Design၊ မြင့်မားသော Performance ဖြင့် ရေးဆွဲပေးခြင်း။",
+        "service3_desc": "Personal Portfolio မှ E-commerce အထိ Web Application မျိုးစုံကို စိတ်တိုင်းကျ ဖန်တီးပေးခြင်း။",
+        "classes_h2_sub": "Professional တစ်ယောက်ဖြစ်ဖို့ လိုအပ်သော နည်းပညာများ",
+        "enroll_now": "သင်တန်းအပ်ရန်",
+        "admin_add": "သင်တန်းအသစ်ထည့်ရန်",
+        "admin_active": "[ ADMIN MODE ဖွင့်ထားသည် ]",
+        "modal_h3": "သင်တန်းအသစ်ထည့်သွင်းခြင်း",
+        "modal_title_label": "သင်တန်းခေါင်းစဉ်",
+        "modal_img_label": "ပုံလိပ်စာ (URL)",
+        "modal_badge_label": "ကတ်ပြားစာသား",
+        "modal_meta_label": "သင်တန်းကြာချိန် & အမျိုးအစား",
+        "modal_desc_label": "ဖော်ပြချက်",
+        "modal_tags_label": "Tag များ (ကော်မာခြား)",
+        "modal_price_label": "ဈေးနှုန်း (ကျပ်)",
+        "modal_old_price_label": "မူရင်းဈေးနှုန်း (စိတ်ကြိုက်)",
+        "modal_cancel": "ဖျက်သိမ်းမည်",
+        "modal_save": "သိမ်းဆည်းမည်",
+        "pass_h3": "လျှို့ဝှက်ဝင်ရောက်ခွင့်",
+        "pass_input": "ဝင်ရောက်ခွင့်ကုတ်နံပါတ်",
+        "pass_auth": "စနစ်သို့ဝင်ရောက်မည်",
+      }
+    };
+
+    // Default Initial Courses (Now supporting bilingual content)
+    const defaultCourses = [
+      {
+        id: 1,
+        title: { my: "Termux & Linux Pentesting Class", en: "Termux & Linux Pentesting Class" },
+        img: "https://i.ibb.co/Ndv8L6r8/IMG-20251010-031629-534.jpg",
+        badge: { my: "အရောင်းရဆုံး", en: "Best Seller" },
+        meta: { my: '<i class="fas fa-clock"></i> ၁ လ | <i class="fas fa-video"></i> ဗီဒီယို/ဇူးမ်', en: '<i class="fas fa-clock"></i> 1 Month | <i class="fas fa-video"></i> Video/Zoom' },
+        desc: { my: "Android ဖုန်းတစ်လုံးရှိရုံဖြင့် Linux Command များ၊ Ethical Hacking Tool များနှင့် Network Security စစ်ဆေးနည်းများကို အခြေခံမှစ၍ ကျွမ်းကျင်အဆင့်ထိ သင်ကြားပေးမည့် အတန်း။", en: "A course covering Linux Commands, Ethical Hacking Tools, and Network Security auditing from basic to expert level, using just an Android phone." },
+        tags: [{my: "Linux Commands", en: "Linux Commands"}, {my: "လုံခြုံရေး စစ်ဆေးခြင်း", en: "Security Audit"}, {my: "သတင်းအချက်အလက် စုဆောင်းခြင်း", en: "Info Gathering"}, {my: "Wifi လုံခြုံရေး", en: "Wifi Security"}],
+        price: "100,000 Ks",
+        oldPrice: null
+      },
+      {
+        id: 2,
+        title: { my: "Full Stack Web & Mobile Masterclass", en: "Full Stack Web & Mobile Masterclass" },
+        img: "https://i.ibb.co/0VvCzVj2/IMG-20251020-035209-308.jpg",
+        badge: { my: "အလုပ်အကိုင် အခွင့်အလမ်း", en: "Career Choice" },
+        meta: { my: '<i class="fas fa-clock"></i> ၅-၇ လ | <i class="fas fa-certificate"></i> အသိအမှတ်ပြု လက်မှတ်', en: '<i class="fas fa-clock"></i> 5-7 Months | <i class="fas fa-certificate"></i> Certified' },
+        desc: { my: "Website ရေးဆွဲခြင်း (HTML/CSS/Laravel) မှ Mobile App (Flutter) အထိ Full-Stack Developer တစ်ယောက်အဖြစ် အသက်မွေးဝမ်းကြောင်းပြုလိုသူများအတွက် အပြည့်စုံဆုံး သင်တန်း။", en: "The most comprehensive course for those who want to pursue a career as a Full-Stack Developer, covering Website development (HTML/CSS/Laravel) to Mobile App (Flutter)." },
+        tags: [{my: "HTML/CSS/JS", en: "HTML/CSS/JS"}, {my: "PHP Laravel", en: "PHP Laravel"}, {my: "Flutter", en: "Flutter"}, {my: "လက်တွေ့ Project များ", en: "Real Projects"}],
+        price: "150,000 Ks",
+        oldPrice: "220,000 Ks"
+      },
+      {
+        id: 3,
+        title: { my: "Android App Dev (Sketchware)", en: "Android App Dev (Sketchware)" },
+        img: "https://i.ibb.co/F4v4yZYy/IMG-20251126-152433-455.jpg", 
+        badge: { my: "အစပြုသူများအတွက်", en: "Beginner Friendly" },
+        meta: { my: '<i class="fas fa-clock"></i> ၄၀+ သင်ခန်းစာ | <i class="fas fa-laptop-code"></i> ကွန်ပျူတာမလို', en: '<i class="fas fa-clock"></i> 40+ Lessons | <i class="fas fa-laptop-code"></i> No PC Needed' },
+        desc: { my: "ကွန်ပျူတာမလို၊ Coding အများကြီး ရေးစရာမလိုဘဲ ဖုန်းတစ်လုံးတည်းဖြင့် မိမိကိုယ်ပိုင် Application များကို ဖန်တီးနိုင်မည့် Logic Based Development သင်တန်း။", en: "A Logic Based Development course that allows you to create your own Applications using only a phone, without needing a computer or extensive coding." },
+        tags: [{my: "Block Coding", en: "Block Coding"}, {my: "UI ဒီဇိုင်း", en: "UI Design"}, {my: "Firebase", en: "Firebase"}, {my: "PlayStore လမ်းညွှန်", en: "PlayStore Guide"}],
+        price: "100,000 Ks",
+        oldPrice: "150,000 Ks"
+      }
+    ];
+
+    // Load courses from LocalStorage or use default
+    let courses = JSON.parse(localStorage.getItem('bossBabyCourses')) || defaultCourses;
+    
+    // Check if courses loaded from storage need to be initialized with language objects
+    if (courses.length > defaultCourses.length) {
+        // If there are admin-added courses, ensure they have bilingual structure 
+        // (we default English to the Burmese input since the admin panel is simple)
+        courses = courses.map(course => {
+            if (typeof course.title === 'string') {
+                return {
+                    ...course,
+                    title: { my: course.title, en: course.title },
+                    badge: { my: course.badge, en: course.badge },
+                    meta: { my: course.meta, en: course.meta },
+                    desc: { my: course.desc, en: course.desc },
+                    tags: course.tags.map(tag => ({ my: tag, en: tag }))
+                };
             }
-        }
+            return course;
+        });
+        saveToStorage();
+    } else if (courses.length === 0) {
+        // If storage was cleared, restore defaults
+        courses = defaultCourses;
+        saveToStorage();
+    }
+
+
+    // --- TRANSLATION FUNCTION ---
+    function translateText() {
+        // 1. Translate static elements using data-i18n attributes
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (i18n[currentLang][key]) {
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    element.placeholder = i18n[currentLang][key];
+                } else if (element.tagName === 'LABEL') {
+                    element.textContent = i18n[currentLang][key];
+                } else if (element.id === 'admin-active-tag') {
+                    element.textContent = i18n[currentLang][key];
+                }
+                else {
+                    element.textContent = i18n[currentLang][key];
+                }
+            }
+        });
+
+        // 2. Translate specific exceptions (elements with IDs)
+        document.getElementById('hero-quote').textContent = i18n[currentLang].hero_quote;
+        document.getElementById('services-sub').textContent = i18n[currentLang].services_h2_sub;
+        document.getElementById('classes-sub').textContent = i18n[currentLang].classes_h2_sub;
+        document.getElementById('adminPass').placeholder = i18n[currentLang].pass_input;
+
+        // 3. Update Language Button
+        const langBtn = document.getElementById('lang-toggle-btn');
+        langBtn.textContent = currentLang === 'my' ? 'English' : 'မြန်မာ';
+        langBtn.style.fontFamily = currentLang === 'my' ? "'Poppins', sans-serif" : "'Padauk', sans-serif";
+
+        // 4. Re-render dynamic content (courses)
+        renderCourses();
+    }
+
+    function switchLanguage() {
+      currentLang = currentLang === 'my' ? 'en' : 'my';
+      document.documentElement.lang = currentLang; // Update HTML lang attribute
+      translateText();
+    }
+
+
+    // --- RENDER FUNCTION (MODIFIED FOR BILINGUAL) ---
+    function renderCourses() {
+      const container = document.getElementById('coursesList');
+      container.innerHTML = '';
+      const enrollText = i18n[currentLang].enroll_now;
+
+      courses.forEach((course, index) => {
+        // Handle bilingual properties or fall back to string if old/admin format
+        const titleText = (typeof course.title === 'string' ? course.title : (course.title[currentLang] || course.title['my']));
+        const badgeText = (typeof course.badge === 'string' ? course.badge : (course.badge[currentLang] || course.badge['my']));
+        const metaText = (typeof course.meta === 'string' ? course.meta : (course.meta[currentLang] || course.meta['my']));
+        const descText = (typeof course.desc === 'string' ? course.desc : (course.desc[currentLang] || course.desc['my']));
         
-        // Ensure the typing animation starts after the CSS animation delay
-        // The CSS animation handles the width property for the cursor effect
-        setTimeout(typeWriter, 1000); 
+        let tagsHtml = course.tags.map(tagObj => {
+            const tagText = (typeof tagObj === 'string' ? tagObj : (tagObj[currentLang] || tagObj['my']));
+            return `<span class="tag">${tagText}</span>`;
+        }).join('');
+        
+        // Price remains constant
+        let priceHtml = `<div><span class="price">${course.price}</span>`;
+        if (course.oldPrice) {
+          priceHtml += `<span class="old-price">${course.oldPrice}</span>`;
+        }
+        priceHtml += `</div>`;
+
+        const html = `
+          <div class="course-item">
+            <button class="delete-btn" onclick="deleteCourse(${index})"><i class="fas fa-trash"></i></button>
+            <div class="course-img-wrapper">
+              <img src="${course.img}" alt="${titleText}" class="course-img">
+              <div class="course-badge">${badgeText}</div>
+            </div>
+            <div class="course-content">
+              <h3 class="course-title">${titleText}</h3>
+              <div class="course-meta">${metaText}</div>
+              <p class="course-description">${descText}</p>
+              <div class="syllabus-highlights">${tagsHtml}</div>
+              <div class="price-row">
+                ${priceHtml}
+                <a href="https://t.me/mrbossbabyinfo" class="btn-detail">${enrollText}</a>
+              </div>
+            </div>
+          </div>
+        `;
+        container.innerHTML += html;
+      });
+    }
+
+    // --- STEALTH ADMIN LOGIC ---
+    let clickCount = 0;
+    let clickTimer;
+    const trigger = document.getElementById('adminTrigger');
+
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault(); 
+      clickCount++;
+      
+      clearTimeout(clickTimer);
+      
+      if (clickCount === 3) {
+        document.getElementById('passwordModal').style.display = 'block';
+        document.getElementById('adminPass').focus();
+        clickCount = 0;
+      } else {
+        clickTimer = setTimeout(() => {
+          clickCount = 0; 
+        }, 500);
+      }
     });
+
+    function checkPassword() {
+      const pass = document.getElementById('adminPass').value;
+      if (pass === 'aiobabyboss') {
+        activateAdminMode();
+        document.getElementById('passwordModal').style.display = 'none';
+        document.getElementById('adminPass').value = '';
+      } else {
+        // Use standard alert since custom modal is too much for simple alerts
+        alert('ACCESS DENIED: Incorrect Protocol.');
+        document.getElementById('passwordModal').style.display = 'none';
+        clickCount = 0;
+      }
+    }
+
+    function activateAdminMode() {
+      document.body.classList.add('admin-mode');
+      document.getElementById('adminPanel').classList.add('active');
+      
+      // Update trigger text to reflect current language
+      trigger.style.color = 'var(--neon-pink)';
+      trigger.innerText = (currentLang === 'my' ? 'Premium Online Classes 🔓' : 'Premium Online Classes 🔓');
+      // Re-render to show delete buttons
+      renderCourses();
+    }
+
+    // --- CRUD OPERATIONS ---
+    
+    function openAddModal() {
+      document.getElementById('addCourseModal').style.display = 'block';
+    }
+
+    function closeAddModal() {
+      document.getElementById('addCourseModal').style.display = 'none';
+    }
+
+    function saveNewCourse() {
+      const title = document.getElementById('newTitle').value;
+      const img = document.getElementById('newImg').value || "https://placehold.co/600x400/000000/00ffc6?text=New+Class";
+      const badge = document.getElementById('newBadge').value || "New";
+      const meta = document.getElementById('newMeta').value;
+      const desc = document.getElementById('newDesc').value;
+      const tags = document.getElementById('newTags').value.split(',').map(t => t.trim());
+      const price = document.getElementById('newPrice').value;
+      const oldPrice = document.getElementById('newOldPrice').value;
+
+      if(!title || !price) {
+        // Use standard alert since custom modal is too much for simple alerts
+        alert(currentLang === 'my' ? "ကျေးဇူးပြု၍ ခေါင်းစဉ်နှင့် ဈေးနှုန်း အနည်းဆုံး ဖြည့်ပါ။" : "Please fill in at least the Title and Price.");
+        return;
+      }
+
+      // Admin Panel generated courses are stored as single language (what the admin typed)
+      // but wrapped in the bilingual object structure for consistency in rendering.
+      const newCourse = {
+        id: Date.now(),
+        title: { [currentLang]: title, [currentLang === 'my' ? 'en' : 'my']: title }, // Set both languages to same text
+        img,
+        badge: { [currentLang]: badge, [currentLang === 'my' ? 'en' : 'my']: badge },
+        meta: { [currentLang]: meta, [currentLang === 'my' ? 'en' : 'my']: meta },
+        desc: { [currentLang]: desc, [currentLang === 'my' ? 'en' : 'my']: desc },
+        tags: tags.map(tag => ({ [currentLang]: tag, [currentLang === 'my' ? 'en' : 'my']: tag })),
+        price,
+        oldPrice
+      };
+
+      courses.push(newCourse);
+      saveToStorage();
+      renderCourses();
+      closeAddModal();
+      
+      // Clear inputs
+      document.querySelectorAll('#addCourseModal input, #addCourseModal textarea').forEach(input => input.value = '');
+    }
+
+    function deleteCourse(index) {
+      if(confirm(currentLang === 'my' ? "ဒီသင်တန်းကို ဖျက်ချင်တာ သေချာပါသလား။" : "Are you sure you want to delete this course?")) {
+        courses.splice(index, 1);
+        saveToStorage();
+        renderCourses();
+      }
+    }
+
+    function saveToStorage() {
+      localStorage.setItem('bossBabyCourses', JSON.stringify(courses));
+    }
+
+    // --- INITIALIZATION ---
+    document.addEventListener('DOMContentLoaded', () => {
+        // Set initial language to Burmese
+        currentLang = 'my';
+        document.documentElement.lang = currentLang;
+        translateText(); 
+    });
+
+    // Close modals if clicked outside
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        event.target.style.display = "none";
+      }
+    }
   </script>
 
 </body>
