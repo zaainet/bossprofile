@@ -42,8 +42,8 @@
     <section id="services" class="section dark">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title" data-i18n="services_h3">Professional Services</h2>
-          <p class="section-subtitle" data-i18n="services_h3_sub" id="services-sub">ကျွန်တော်တို့ ပေးစွမ်းနိုင်သော ကျွမ်းကျင်ဝန်ဆောင်မှုများ</p>
+          <h3 class="section-title" data-i18n="services_h3">Professional Services</h3>
+          <p class="section-subtitle" data-i18n="services_h3_sub">ကျွန်တော်တို့ ပေးစွမ်းနိုင်သော ကျွမ်းကျင်ဝန်ဆောင်မှုများ</p>
         </div>
 
         <div class="services-container">
@@ -74,10 +74,10 @@
     <section id="classes" class="section">
       <div class="container">
         <div class="section-header">
-          <h2 id="adminTrigger" class="section-title" data-i18n="classes_h3">Premium Online Classes</h2>
-          <p class="section-subtitle" data-i18n="classes_h3_sub" id="classes-sub">Professional တစ်ယောက်ဖြစ်ဖို့ လိုအပ်သော နည်းပညာများ</p>
+          <h3 id="adminTrigger" class="section-title" data-i18n="classes_h3">Premium Online Classes</h3>
+          <p class="section-subtitle" data-i18n="classes_h3_sub">Professional တစ်ယောက်ဖြစ်ဖို့ လိုအပ်သော နည်းပညာများ</p>
         </div>
-
+        
         <div id="adminPanel" class="admin-controls">
           <button class="btn-admin" onclick="App.openAddModal()"><i class="fas fa-plus"></i> <span data-i18n="admin_add">သင်တန်းအသစ်ထည့်ရန်</span></button>
           <span id="admin-active-tag" style="margin-left: 10px;" data-i18n="admin_active">[ ADMIN MODE ဖွင့်ထားသည် ]</span>
@@ -119,6 +119,14 @@
     <p style="color: #444; font-size: 0.7rem; margin-top:5px;" data-i18n="footer_sub">Empowering Myanmar's Digital Future.</p>
   </footer>
 
+  <div id="passwordModal" class="modal">
+    <div class="modal-content">
+      <h3 data-i18n="pass_auth">စနစ်သို့ဝင်ရောက်မည်</h3>
+      <input type="password" id="adminPass" data-i18n-placeholder="pass_input" placeholder="ဝင်ရောက်ခွင့်ကုတ်နံပါတ်">
+      <button class="btn-primary" onclick="App.checkPassword()" data-i18n="pass_auth">AUTHENTICATE</button>
+    </div>
+  </div>
+
   <div id="addCourseModal" class="modal">
     <div class="modal-content">
       <h3 data-i18n="modal_h3">သင်တန်းအသစ်ထည့်သွင်းခြင်း</h3>
@@ -130,6 +138,44 @@
         <label data-i18n="modal_img_label">ပုံလိပ်စာ (URL)</label>
         <input type="text" id="newImg" placeholder="https://..." value="https://placehold.co/600x400/000000/00ffc6?text=New+Class">
       </div>
+      <div class="input-group">
+        <label data-i18n="modal_badge_label">Badge (တံဆိပ်)</label>
+        <input type="text" id="newBadge" placeholder="e.g. Best Seller">
+      </div>
+      <div class="input-group">
+        <label data-i18n="modal_meta_label">Meta Data</label>
+        <input type="text" id="newMeta" placeholder="e.g. <i class='fas fa-clock'></i> 1 Month">
+      </div>
+      <div class="input-group">
+        <label data-i18n="modal_desc_label">အကျဉ်းချုပ် ဖော်ပြချက်</label>
+        <textarea id="newDesc" placeholder="This course covers..."></textarea>
+      </div>
+      <div class="input-group">
+        <label data-i18n="modal_tags_label">Tags (Comma Separated)</label>
+        <input type="text" id="newTags" placeholder="e.g. HTML, CSS, JavaScript">
+      </div>
+      <div class="input-group price-inputs">
+        <div>
+          <label data-i18n="modal_price_label">ဈေးနှုန်း (ကျပ်)</label>
+          <input type="text" id="newPrice" placeholder="e.g. 150,000 Ks">
+        </div>
+        <div>
+          <label data-i18n="modal_oldprice_label">မူရင်းဈေးနှုန်း (Optional)</label>
+          <input type="text" id="newOldPrice" placeholder="e.g. 220,000 Ks">
+        </div>
+      </div>
+      
+      <div class="modal-actions">
+        <button class="btn-primary" onclick="App.saveNewCourse()" data-i18n="modal_save">Save Course</button>
+        <button class="btn-secondary" onclick="App.closeAddModal()" data-i18n="modal_cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+
+</body>
+</html>
       <div class="input-group">
         <label data-i18n="modal_badge_label">ကတ်ပြားစာသား</label>
         <input type="text" id="newBadge" placeholder="e.g. New Arrival">
