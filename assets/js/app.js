@@ -1,7 +1,6 @@
 /**
  * assets/js/app.js
  * Mr.BossBaby Academy - Core Frontend JavaScript (i18n + Dynamic Courses + Admin CRUD)
- * REVISED by Gemini AI
  */
 
 const App = (() => {
