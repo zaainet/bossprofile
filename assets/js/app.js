@@ -48,11 +48,11 @@ const App = (() => {
         title: { my: "Full Stack Web & Mobile Masterclass", en: "Full Stack Web & Mobile Masterclass" },
         img: "https://i.ibb.co/0VvCzVj2/IMG-20251020-035209-308.jpg",
         badge: { my: "အလုပ်အကိုင် အခွင့်အလမ်း", en: "Career Choice" },
-        meta: { my: '<i class="fas fa-clock"></i> ၅-၇ လ | <i class="fas fa-certificate"></i> အသိအမှတ်ပြု လက်မှတ်', en: '<i class="fas fa-clock"></i> 5-7 Months | <i class="fas fa-certificate"></i> Certified' },
+        meta: { my: '<i class="fas fa-clock"></i> ၃-၅ လ | <i class="fas fa-certificate"></i> အသိအမှတ်ပြု လက်မှတ်', en: '<i class="fas fa-clock"></i> 5-7 Months | <i class="fas fa-certificate"></i> Certified' },
         desc: { my: "Website ရေးဆွဲခြင်း (HTML/CSS/Laravel) မှ Mobile App (Flutter) အထိ Full-Stack Developer တစ်ယောက်အဖြစ် အသက်မွေးဝမ်းကြောင်းပြုလိုသူများအတွက် အပြည့်စုံဆုံး သင်တန်း။", en: "The most comprehensive course for those who want to pursue a career as a Full-Stack Developer, covering Website development (HTML/CSS/Laravel) to Mobile App (Flutter)." },
         tags: [{my: "HTML/CSS/JS", en: "HTML/CSS/JS"}, {my: "PHP Laravel", en: "PHP Laravel"}, {my: "Flutter", en: "Flutter"}, {my: "လက်တွေ့ Project များ", en: "Real Projects"}],
-        price: "150,000 Ks",
-        oldPrice: "220,000 Ks"
+        price: "400,000 Ks",
+        oldPrice: "500,000 Ks"
       },
       {
         id: 3,
