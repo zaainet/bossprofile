@@ -1,6 +1,7 @@
 /**
  * assets/js/app.js
  * Mr.BossBaby Academy - Core Frontend JavaScript (i18n + Dynamic Courses + Admin CRUD)
+ * REVISED by Gemini AI
  */
 
 const App = (() => {
@@ -15,6 +16,9 @@ const App = (() => {
         isAdminMode: false,
     };
 
+    // Helper function for DOM selection
+    const $ = (selector) => document.querySelector(selector);
+    
     const DOM = {
         coursesList: document.getElementById('coursesList'),
         adminTrigger: document.getElementById('adminTrigger'),
@@ -22,7 +26,8 @@ const App = (() => {
         addCourseModal: document.getElementById('addCourseModal'),
         adminPanel: document.getElementById('adminPanel'),
         navLinks: document.getElementById('navLinks'),
-        langBtn: document.getElementById('lang-toggle-btn')
+        langBtn: document.getElementById('lang-toggle-btn'),
+        menuToggle: document.getElementById('menu-toggle') // Assuming you have a mobile menu toggle button
     };
     
     // Default Initial Courses (Using original image links from Code 1)
@@ -69,42 +74,88 @@ const App = (() => {
     async function loadTranslations() {
         try {
             const [mm, en] = await Promise.all([
-                fetch('lang/mm.json').then(res => res.json()),
-                fetch('lang/eng.json').then(res => res.json())
+                fetch('lang/mm.json').then(res => {
+                    if (!res.ok) throw new Error("mm.json load failed");
+                    return res.json();
+                }),
+                fetch('lang/eng.json').then(res => {
+                    if (!res.ok) throw new Error("eng.json load failed");
+                    return res.json();
+                })
             ]);
             state.i18n = { my: mm, en: en };
         } catch (error) {
             console.error("Error loading translations. Using hardcoded defaults.", error);
             // Fallback (for environments where JSON loading is restricted) - Use Code 1's basic keys as fallback
             state.i18n = {
-                "my": { "nav_services": "ဝန်ဆောင်မှု", "nav_classes": "သင်တန်းများ", "enroll_now": "သင်တန်းအပ်ရန်", "admin_active": "[ ADMIN MODE ဖွင့်ထားသည် ]", "pass_auth": "စနစ်သို့ဝင်ရောက်မည်", "pass_input": "ဝင်ရောက်ခွင့်ကုတ်နံပါတ်", "modal_title_label": "သင်တန်းခေါင်းစဉ်", "modal_price_label": "ဈေးနှုန်း (ကျပ်)", "hero_quote": "\"နည်းပညာဆိုတာ လူသားတွေရဲ့ လက်နက်ဖြစ်တယ်။ အဲ့ဒီလက်နက်ကို ဘယ်လို စနစ်တကျ၊ လုံခြုံစွာ ကိုင်တွယ်မလဲဆိုတာ ကျွန်တော်တို့ သင်ကြားပေးနေပါတယ်။\"" },
-                "en": { "nav_services": "Services", "nav_classes": "Classes", "enroll_now": "Enroll Now", "admin_active": "[ ADMIN MODE ACTIVE ]", "pass_auth": "AUTHENTICATE", "pass_input": "Enter Access Code", "modal_title_label": "Course Title", "modal_price_label": "Price (Ks)", "hero_quote": "\"Technology is humanity's weapon. We teach how to handle that weapon systematically and securely.\"" }
+                "my": { 
+                    "nav.services": "ဝန်ဆောင်မှု", 
+                    "nav.courses": "သင်တန်းများ", 
+                    "enroll_now": "သင်တန်းအပ်ရန်", 
+                    "admin_active": "[ ADMIN MODE ဖွင့်ထားသည် ]", 
+                    "pass_auth": "စနစ်သို့ဝင်ရောက်မည်", 
+                    "pass_input": "ဝင်ရောက်ခွင့်ကုတ်နံပါတ်", 
+                    "modal_title_label": "သင်တန်းခေါင်းစဉ်", 
+                    "modal_price_label": "ဈေးနှုန်း (ကျပ်)", 
+                    "hero_quote": "နည်းပညာဆိုတာ လူသားတွေရဲ့ လက်နက်ဖြစ်တယ်။ အဲ့ဒီလက်နက်ကို ဘယ်လို စနစ်တကျ၊ လုံခြုံစွာ ကိုင်တွယ်မလဲဆိုတာ ကျွန်တော်တို့ သင်ကြားပေးနေပါတယ်။" ,
+                    "lang_switch": "Read in English" // Essential for switch button
+                },
+                "en": { 
+                    "nav.services": "Services", 
+                    "nav.courses": "Courses", 
+                    "enroll_now": "Enroll Now", 
+                    "admin_active": "[ ADMIN MODE ACTIVE ]", 
+                    "pass_auth": "AUTHENTICATE", 
+                    "pass_input": "Enter Access Code", 
+                    "modal_title_label": "Course Title", 
+                    "modal_price_label": "Price (Ks)", 
+                    "hero_quote": "Technology is humanity's weapon. We teach how to handle that weapon systematically and securely.",
+                    "lang_switch": "Read in Burmese" // Essential for switch button
+                }
             };
         }
     }
 
-    function translateText() {
+    function applyLanguage() { // Renamed from translateText for better clarity
         const langData = state.i18n[state.lang] || {};
 
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
             const translation = langData[key];
             if (translation) {
+                // Check if the element is an input/textarea for placeholder update
                 if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                    element.placeholder = translation;
+                    // Check for data-i18n-placeholder attribute
+                    if (element.hasAttribute('data-i18n-placeholder')) {
+                         const placeholderKey = element.getAttribute('data-i18n-placeholder');
+                         element.placeholder = langData[placeholderKey] || translation;
+                    } else {
+                        element.placeholder = translation; // Fallback if no specific placeholder key
+                    }
                 } else {
                     element.textContent = translation;
                 }
             }
         });
         
-        // Handle specific elements
-        document.getElementById('hero-quote').textContent = langData.hero_quote;
-        document.getElementById('adminPass').placeholder = langData.pass_input;
+        // Handle specific elements (IDs)
+        const heroQuoteEl = document.getElementById('hero-quote');
+        if (heroQuoteEl) {
+             heroQuoteEl.textContent = langData.hero_quote || heroQuoteEl.textContent;
+        }
+
+        const adminPassEl = document.getElementById('adminPass');
+        if (adminPassEl) {
+             adminPassEl.placeholder = langData.pass_input || adminPassEl.placeholder;
+        }
 
         // Update Language Button
-        DOM.langBtn.textContent = langData.lang_switch;
-        DOM.langBtn.style.fontFamily = state.lang === 'my' ? "'Padauk', sans-serif" : "'Poppins', sans-serif";
+        if (DOM.langBtn) {
+            DOM.langBtn.textContent = langData.lang_switch || DOM.langBtn.textContent;
+            // Set font based on language for visual appeal
+            DOM.langBtn.style.fontFamily = state.lang === 'my' ? "'Padauk', sans-serif" : "'Poppins', sans-serif";
+        }
+
 
         // Re-render dynamic content (courses)
         renderCourses();
@@ -113,7 +164,7 @@ const App = (() => {
     function switchLanguage() {
         state.lang = state.lang === 'my' ? 'en' : 'my';
         document.documentElement.lang = state.lang;
-        translateText();
+        applyLanguage();
     }
 
     /* -----------------------------------------
@@ -121,6 +172,8 @@ const App = (() => {
     ----------------------------------------- */
     function renderCourses() {
         const container = DOM.coursesList;
+        if (!container) return; // Exit if container not found
+        
         container.innerHTML = '';
         const enrollText = (state.i18n[state.lang] || {}).enroll_now || (state.lang === 'my' ? "သင်တန်းအပ်ရန်" : "Enroll Now");
 
@@ -192,16 +245,21 @@ const App = (() => {
     let clickTimer;
 
     function setupAdminMode() {
+        if (!DOM.adminTrigger) return;
+        
         // Triple-click mechanism to open password modal
         DOM.adminTrigger.addEventListener('click', (e) => {
-            e.preventDefault(); 
+            e.preventDefault(); // Prevent default link behavior on triple click
             clickCount++;
             
             clearTimeout(clickTimer);
             
             if (clickCount === 3) {
-                DOM.passwordModal.style.display = 'block';
-                document.getElementById('adminPass').focus();
+                if (DOM.passwordModal) {
+                    DOM.passwordModal.style.display = 'block';
+                    const adminPassInput = document.getElementById('adminPass');
+                    if(adminPassInput) adminPassInput.focus();
+                }
                 clickCount = 0; // Reset after trigger
             } else {
                 clickTimer = setTimeout(() => {
@@ -212,25 +270,35 @@ const App = (() => {
     }
 
     function checkPassword() {
-        const pass = document.getElementById('adminPass').value;
+        const adminPassInput = document.getElementById('adminPass');
+        const pass = adminPassInput ? adminPassInput.value : '';
+        
         if (pass === state.ADMIN_PASSWORD) {
             activateAdminMode();
-            DOM.passwordModal.style.display = 'none';
-            document.getElementById('adminPass').value = '';
+            if(DOM.passwordModal) DOM.passwordModal.style.display = 'none';
+            if(adminPassInput) adminPassInput.value = '';
         } else {
             alert(state.lang === 'my' ? 'လျှို့ဝှက်ကုတ်နံပါတ် မှားယွင်းနေပါသည်။' : 'ACCESS DENIED: Incorrect Protocol.');
-            DOM.passwordModal.style.display = 'none';
+            if(DOM.passwordModal) DOM.passwordModal.style.display = 'none';
         }
     }
 
     function activateAdminMode() {
         state.isAdminMode = true;
         document.body.classList.add('admin-mode');
-        DOM.adminPanel.classList.add('active');
+        if(DOM.adminPanel) DOM.adminPanel.classList.add('active');
         
         // Update trigger text to indicate mode
-        DOM.adminTrigger.style.color = 'var(--neon-pink)';
-        DOM.adminTrigger.textContent = DOM.adminTrigger.textContent.replace('🔓', '') + ' 🔓'; 
+        if(DOM.adminTrigger) {
+            // Find the correct Admin Mode text from i18n
+            const adminActiveText = (state.i18n[state.lang] || {}).admin_active || '[ ADMIN MODE ACTIVE ]';
+            
+            // Assuming adminTrigger originally contains text like "Admin" or similar
+            // We just set the admin_active text and add the icon for clarity
+            DOM.adminTrigger.textContent = adminActiveText;
+            DOM.adminTrigger.style.color = 'var(--neon-pink, #00ffc6)'; // Using a fallback color
+            
+        }
         
         renderCourses();
         console.log("Admin Mode Activated.");
@@ -238,11 +306,11 @@ const App = (() => {
 
     function openAddModal() {
         if (!state.isAdminMode) return;
-        DOM.addCourseModal.style.display = 'block';
+        if(DOM.addCourseModal) DOM.addCourseModal.style.display = 'block';
     }
 
     function closeAddModal() {
-        DOM.addCourseModal.style.display = 'none';
+        if(DOM.addCourseModal) DOM.addCourseModal.style.display = 'none';
     }
 
     function saveNewCourse() {
@@ -282,7 +350,8 @@ const App = (() => {
         
         // Clear inputs after save
         document.querySelectorAll('#addCourseModal input, #addCourseModal textarea').forEach(input => input.value = '');
-        document.getElementById('newImg').value = "https://placehold.co/600x400/000000/00ffc6?text=New+Class";
+        // Default placeholder image for next addition
+        document.getElementById('newImg').value = "https://placehold.co/600x400/0e0e0e/00ffc6?text=New+Class"; 
     }
 
     function deleteCourse(index) {
@@ -293,19 +362,28 @@ const App = (() => {
             renderCourses();
         }
     }
-
+    
+    // Toggle mobile navigation visibility
     function toggleMobileMenu() {
-        DOM.navLinks.classList.toggle('active');
+        if (DOM.navLinks) DOM.navLinks.classList.toggle('active');
     }
 
     /* -----------------------------------------
        Initialization
     ----------------------------------------- */
     async function init() {
+        // Find essential DOM elements that were not retrieved initially
+        if(!DOM.coursesList) DOM.coursesList = document.getElementById('coursesList');
+
         loadCourses(); // Load existing or default courses
         await loadTranslations(); // Load i18n data
-        translateText(); // Apply translations and render courses
+        applyLanguage(); // Apply translations and render courses
         setupAdminMode(); // Setup the admin access trigger
+        
+        // Add event listener for mobile menu toggle (if available)
+        if (DOM.menuToggle) {
+            DOM.menuToggle.addEventListener('click', toggleMobileMenu);
+        }
 
         // Close modals if clicked outside
         window.onclick = function(event) {
