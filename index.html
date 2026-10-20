@@ -5,40 +5,922 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>𝐌𝐫.𝐁𝐨𝐬𝐬𝐁𝐚𝐛𝐲 | Professional Tech & Security Academy</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Poppins:wght@300;400;500;600;700&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  
-  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    :root {
+      --bg-primary: #060913;
+      --bg-secondary: #0b1121;
+      --bg-card: rgba(15, 24, 46, 0.78);
+      --neon-cyan: #00ffc6;
+      --neon-blue: #00a8ff;
+      --neon-purple: #8c52ff;
+      --danger: #ff4757;
+      --warning: #ffa502;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border-glow: rgba(0, 255, 198, 0.28);
+      --shadow-neon: 0 0 22px rgba(0, 255, 198, 0.25);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(0, 255, 198, 0.08) 0%, transparent 35%),
+        radial-gradient(circle at 85% 80%, rgba(0, 168, 255, 0.08) 0%, transparent 40%),
+        linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      color: var(--text-main);
+      font-family: 'Poppins', 'Padauk', sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* Cyber Grid Overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(0, 255, 198, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 198, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 16px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(6, 9, 19, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0, 255, 198, 0.2);
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .logo span {
+      color: var(--neon-cyan);
+      text-shadow: 0 0 12px rgba(0, 255, 198, 0.6);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--neon-cyan);
+      box-shadow: 0 0 8px var(--neon-cyan);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--neon-cyan);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .lang-toggle-btn {
+      background: rgba(0, 255, 198, 0.1);
+      border: 1px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      padding: 6px 16px;
+      border-radius: 25px;
+      font-family: 'Poppins', 'Padauk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .lang-toggle-btn:hover {
+      background: var(--neon-cyan);
+      color: #050811;
+      box-shadow: var(--shadow-neon);
+    }
+
+    .menu-icon {
+      display: none;
+      font-size: 1.5rem;
+      color: var(--neon-cyan);
+      cursor: pointer;
+    }
+
+    /* Sections & Containers */
+    .section {
+      padding: 95px 6% 80px;
+    }
+
+    .section.dark {
+      background: rgba(3, 6, 14, 0.65);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', 'Padauk', sans-serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      display: inline-block;
+      position: relative;
+      margin-bottom: 12px;
+      user-select: none;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-blue));
+      margin: 10px auto 0;
+      border-radius: 3px;
+      box-shadow: 0 0 10px var(--neon-cyan);
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding-top: 120px;
+      position: relative;
+    }
+
+    .profile-img-container {
+      width: 165px;
+      height: 165px;
+      border-radius: 50%;
+      padding: 5px;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue), var(--neon-purple));
+      box-shadow: 0 0 35px rgba(0, 255, 198, 0.35);
+      margin-bottom: 24px;
+      position: relative;
+      animation: floatImg 4s ease-in-out infinite;
+    }
+
+    @keyframes floatImg {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .profile-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid var(--bg-primary);
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: #fff;
+      margin-bottom: 8px;
+      text-shadow: 0 0 20px rgba(0, 255, 198, 0.4);
+    }
+
+    .hero .subtitle {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--neon-cyan);
+      font-size: clamp(0.88rem, 2vw, 1.1rem);
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+
+    .hero-bio {
+      max-width: 700px;
+      background: rgba(15, 24, 46, 0.65);
+      border: 1px solid var(--border-glow);
+      border-left: 4px solid var(--neon-cyan);
+      padding: 20px 28px;
+      border-radius: 14px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      margin-bottom: 30px;
+    }
+
+    .hero-bio p {
+      font-size: 1.02rem;
+      color: #e2e8f0;
+      font-style: italic;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Stats Bar */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 850px;
+      margin-top: 45px;
+      padding: 20px;
+      background: rgba(11, 17, 33, 0.75);
+      border: 1px solid rgba(0, 255, 198, 0.18);
+      border-radius: 16px;
+    }
+
+    .stat-item h4 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.6rem;
+      color: var(--neon-cyan);
+    }
+
+    .stat-item span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--neon-cyan), #00b894);
+      color: #040814;
+      font-weight: 700;
+      padding: 12px 26px;
+      border-radius: 30px;
+      border: none;
+      text-decoration: none;
+      font-family: inherit;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(0, 255, 198, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 255, 198, 0.55);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-family: inherit;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+      background: rgba(0, 255, 198, 0.08);
+    }
+
+    /* Services Grid */
+    .services-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(0, 255, 198, 0.16);
+      border-radius: 18px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--neon-cyan);
+      box-shadow: var(--shadow-neon);
+    }
+
+    .service-icon {
+      font-size: 2.6rem;
+      color: var(--neon-cyan);
+      margin-bottom: 18px;
+      filter: drop-shadow(0 0 10px rgba(0, 255, 198, 0.4));
+    }
+
+    .service-title {
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .service-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    /* Courses Toolbar & Admin Controls */
+    .courses-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+      min-width: 250px;
+      max-width: 400px;
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--neon-cyan);
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 11px 16px 11px 42px;
+      background: rgba(15, 24, 46, 0.85);
+      border: 1px solid rgba(0, 255, 198, 0.3);
+      border-radius: 25px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .search-box input:focus {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 12px rgba(0, 255, 198, 0.25);
+    }
+
+    .admin-controls {
+      display: none;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      background: rgba(0, 255, 198, 0.08);
+      border: 1px dashed var(--neon-cyan);
+      padding: 14px 20px;
+      border-radius: 14px;
+      margin-bottom: 26px;
+    }
+
+    .admin-controls.active {
+      display: flex;
+    }
+
+    .btn-admin {
+      background: var(--neon-cyan);
+      color: #040814;
+      border: none;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .btn-admin:hover {
+      box-shadow: var(--shadow-neon);
+      transform: translateY(-2px);
+    }
+
+    .btn-admin-outline {
+      background: transparent;
+      border: 1px solid var(--warning);
+      color: var(--warning);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-admin-outline:hover {
+      background: var(--warning);
+      color: #050811;
+    }
+
+    #admin-active-tag {
+      color: var(--neon-cyan);
+      font-family: 'Orbitron', 'Padauk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    /* Courses Grid */
+    .courses-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+    }
+
+    .course-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(0, 255, 198, 0.2);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .course-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--neon-cyan);
+      box-shadow: var(--shadow-neon);
+    }
+
+    .course-img-wrap {
+      position: relative;
+      height: 195px;
+      overflow: hidden;
+      background: #050811;
+    }
+
+    .course-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .course-card:hover .course-img-wrap img {
+      transform: scale(1.07);
+    }
+
+    .course-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
+      color: #030712;
+      font-size: 0.74rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .course-body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .course-meta {
+      font-size: 0.8rem;
+      color: var(--neon-cyan);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .course-title {
+      font-size: 1.22rem;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .course-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+
+    .course-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .tag-chip {
+      background: rgba(0, 255, 198, 0.08);
+      border: 1px solid rgba(0, 255, 198, 0.25);
+      color: #cbd5e1;
+      font-size: 0.74rem;
+      padding: 3px 10px;
+      border-radius: 12px;
+    }
+
+    .course-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .course-price {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--neon-cyan);
+    }
+
+    .course-old-price {
+      font-size: 0.8rem;
+      color: #64748b;
+      text-decoration: line-through;
+      display: block;
+    }
+
+    .course-admin-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-edit-course, .btn-del-course {
+      flex: 1;
+      padding: 7px 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+
+    .btn-edit-course {
+      background: rgba(0, 168, 255, 0.2);
+      color: #38bdf8;
+      border: 1px solid #38bdf8;
+    }
+
+    .btn-edit-course:hover {
+      background: #38bdf8;
+      color: #030712;
+    }
+
+    .btn-del-course {
+      background: rgba(255, 71, 87, 0.2);
+      color: var(--danger);
+      border: 1px solid var(--danger);
+    }
+
+    .btn-del-course:hover {
+      background: var(--danger);
+      color: #fff;
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 32px;
+      margin-top: 36px;
+    }
+
+    .contact-info, .social-block {
+      background: var(--bg-card);
+      border: 1px solid rgba(0, 255, 198, 0.2);
+      border-radius: 18px;
+      padding: 32px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 14px;
+      margin-top: 15px;
+    }
+
+    .social-links a {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(0, 255, 198, 0.1);
+      border: 1px solid rgba(0, 255, 198, 0.35);
+      color: var(--neon-cyan);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--neon-cyan);
+      color: #040814;
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-neon);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 28px 6%;
+      background: #03050b;
+      border-top: 1px solid rgba(0, 255, 198, 0.15);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      position: relative;
+    }
+
+    .admin-lock-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(11, 17, 33, 0.85);
+      border: 1px solid rgba(0, 255, 198, 0.35);
+      color: var(--neon-cyan);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 900;
+      transition: var(--transition);
+    }
+
+    .admin-lock-btn:hover {
+      background: var(--neon-cyan);
+      color: #050811;
+      box-shadow: var(--shadow-neon);
+    }
+
+    /* Modals */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 5, 12, 0.88);
+      backdrop-filter: blur(10px);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 2000;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #0d1527;
+      border: 1.5px solid var(--neon-cyan);
+      border-radius: 18px;
+      padding: 28px;
+      width: 100%;
+      max-width: 520px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.9), var(--shadow-neon);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      color: var(--danger);
+    }
+
+    .modal-content h3 {
+      color: var(--neon-cyan);
+      margin-bottom: 18px;
+      font-size: 1.3rem;
+    }
+
+    .input-group {
+      margin-bottom: 14px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      margin-bottom: 5px;
+    }
+
+    .modal-content input,
+    .modal-content textarea {
+      width: 100%;
+      padding: 10px 14px;
+      background: rgba(5, 9, 20, 0.9);
+      border: 1px solid rgba(0, 255, 198, 0.35);
+      border-radius: 8px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .modal-content textarea {
+      min-height: 85px;
+      resize: vertical;
+    }
+
+    .price-inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .modal-actions button {
+      flex: 1;
+    }
+
+    /* Responsive Mobile Menu */
+    @media (max-width: 768px) {
+      .menu-icon {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(6, 10, 22, 0.98);
+        border-bottom: 1px solid var(--neon-cyan);
+        flex-direction: column;
+        padding: 20px;
+        gap: 18px;
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .price-inputs {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
 
   <nav class="navbar">
-    <div class="logo">BOSS<span>BABY</span></div>
+    <div class="logo" onclick="window.scrollTo(0,0)">BOSS<span>BABY</span></div>
     
     <div class="nav-links" id="navLinks">
-        <a href="#home" data-i18n="nav_home">ပင်မစာမျက်နှာ</a>
-        <a href="#services" data-i18n="nav_services">ဝန်ဆောင်မှု</a>
-        <a href="#classes" data-i18n="nav_classes">သင်တန်းများ</a>
-        <a href="https://t.me/mrbossbabyinfo" target="_blank" data-i18n="nav_contact">ဆက်သွယ်ရန်</a>
-        <button id="lang-toggle-btn" class="lang-toggle-btn" onclick="App.switchLanguage()">English</button>
+      <a href="#home" data-i18n="nav_home" onclick="App.closeMobileMenu()">ပင်မစာမျက်နှာ</a>
+      <a href="#services" data-i18n="nav_services" onclick="App.closeMobileMenu()">ဝန်ဆောင်မှု</a>
+      <a href="#classes" data-i18n="nav_classes" onclick="App.closeMobileMenu()">သင်တန်းများ</a>
+      <a href="#contact" data-i18n="nav_contact" onclick="App.closeMobileMenu()">ဆက်သွယ်ရန်</a>
+      <button id="lang-toggle-btn" class="lang-toggle-btn" onclick="App.switchLanguage()">English</button>
     </div>
+
     <div class="menu-icon" onclick="App.toggleMobileMenu()">
-      <i class="fas fa-bars"></i>
+      <i class="fas fa-bars" id="menuIconSymbol"></i>
     </div>
   </nav>
   
   <main>
+    <!-- HERO SECTION -->
     <section class="hero section" id="home">
       <div class="profile-img-container">
-        <img src="https://i.ibb.co/6R4h49JB/IMG-20251010-031652-603.jpg" alt="Boss Baby Profile" class="profile-img">
+        <img src="https://i.ibb.co/6R4h49JB/IMG-20251010-031652-603.jpg" alt="Boss Baby Profile" class="profile-img" onerror="this.src='https://placehold.co/300x300/060913/00ffc6?text=BB'">
       </div>
-      <h1 class="animate__animated animate__fadeInDown">𝐌𝐫.𝐁𝐨𝐬𝐬𝐁𝐚𝐛𝐲</h1>
+      <h1>𝐌𝐫.𝐁𝐨𝐬𝐬𝐁𝐚𝐛𝐲</h1>
       <p data-i18n="hero_title_sub" class="subtitle">Ethical Hacker | Full Stack Developer | Instructor</p>
       <div class="hero-bio">
         <p id="hero-quote" data-i18n="hero_quote">"နည်းပညာဆိုတာ လူသားတွေရဲ့ လက်နက်ဖြစ်တယ်။ အဲ့ဒီလက်နက်ကို ဘယ်လို စနစ်တကျ၊ လုံခြုံစွာ ကိုင်တွယ်မလဲဆိုတာ ကျွန်တော်တို့ သင်ကြားပေးနေပါတယ်။"</p>
       </div>
+
+      <div class="hero-cta-group">
+        <a href="#classes" class="btn-primary"><i class="fas fa-graduation-cap"></i> <span data-i18n="hero_btn_courses">သင်တန်းများကြည့်ရန်</span></a>
+        <a href="https://t.me/mrbossbabyinfo" target="_blank" rel="noopener noreferrer" class="btn-secondary"><i class="fab fa-telegram"></i> <span data-i18n="hero_btn_contact">တိုက်ရိုက်ဆက်သွယ်ရန်</span></a>
+      </div>
+
+      <div class="stats-bar">
+        <div class="stat-item">
+          <h4>1,500+</h4>
+          <span data-i18n="stat_students">သင်တန်းသားများ</span>
+        </div>
+        <div class="stat-item">
+          <h4>50+</h4>
+          <span data-i18n="stat_projects">ပရောဂျက်များ</span>
+        </div>
+        <div class="stat-item">
+          <h4>100%</h4>
+          <span data-i18n="stat_support">လက်တွေ့ပံ့ပိုးမှု</span>
+        </div>
+      </div>
     </section>
 
+    <!-- SERVICES SECTION -->
     <section id="services" class="section dark">
       <div class="container">
         <div class="section-header">
@@ -48,7 +930,7 @@
 
         <div class="services-container">
           <div class="service-card">
-            <i class="fas fa-shield-alt service-icon"></i>
+            <i class="fas fa-shield-halved service-icon"></i>
             <h3 class="service-title" data-i18n="service1_title">Security Consultation</h3>
             <p class="service-desc" data-i18n="service1_desc">လုပ်ငန်းသုံး Website/App များ၏ လုံခြုံရေး အားနည်းချက်များကို ရှာဖွေစစ်ဆေးပေးခြင်း။</p>
           </div>
@@ -65,94 +947,125 @@
           <div class="service-card">
             <i class="fas fa-gamepad service-icon"></i>
             <h3 class="service-title" data-i18n="service4_title">Game & Custom App Dev</h3>
-            <p class="service-desc" data-i18n="service4_desc">Online 2D Game များ ဖန်တီးခြင်းနှင့် လုပ်ငန်းရှင်များအတွက် ကာစတန် မာဝန်ဆောင်မှု/စီမံခန့်ခွဲမှု App များကို ရေးဆွဲပေးခြင်း။</p>
+            <p class="service-desc" data-i18n="service4_desc">Online 2D Game များ ဖန်တီးခြင်းနှင့် လုပ်ငန်းရှင်များအတွက် စိတ်ကြိုက် စီမံခန့်ခွဲမှု App များကို ရေးဆွဲပေးခြင်း။</p>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- CLASSES SECTION -->
     <section id="classes" class="section">
       <div class="container">
         <div class="section-header">
-          <h3 id="adminTrigger" class="section-title" data-i18n="classes_h3">Premium Online Classes</h3>
+          <h3 id="adminTrigger" class="section-title" data-i18n="classes_h3" title="Triple-click for Admin Mode">Premium Online Classes</h3>
           <p class="section-subtitle" data-i18n="classes_h3_sub">Professional တစ်ယောက်ဖြစ်ဖို့ လိုအပ်သော နည်းပညာများ</p>
+        </div>
+
+        <div class="courses-toolbar">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="courseSearchInput" oninput="App.renderCourses()" data-i18n-placeholder="search_placeholder" placeholder="သင်တန်း သို့မဟုတ် နည်းပညာ ရှာဖွေရန်...">
+          </div>
         </div>
         
         <div id="adminPanel" class="admin-controls">
           <button class="btn-admin" onclick="App.openAddModal()"><i class="fas fa-plus"></i> <span data-i18n="admin_add">သင်တန်းအသစ်ထည့်ရန်</span></button>
-          <span id="admin-active-tag" style="margin-left: 10px;" data-i18n="admin_active">[ ADMIN MODE ဖွင့်ထားသည် ]</span>
+          <button class="btn-admin-outline" onclick="App.resetDefaultCourses()"><i class="fas fa-rotate-left"></i> <span data-i18n="admin_reset">မူလအတိုင်းပြန်ထားရန်</span></button>
+          <button class="btn-admin-outline" style="border-color:var(--danger); color:var(--danger);" onclick="App.logoutAdmin()"><i class="fas fa-lock"></i> <span data-i18n="admin_logout">Admin ပိတ်မည်</span></button>
+          <span id="admin-active-tag" data-i18n="admin_active">[ ADMIN MODE ဖွင့်ထားသည် ]</span>
         </div>
 
-        <div class="courses-container" id="coursesList">
-          </div>
+        <div class="courses-container" id="coursesList"></div>
       </div>
     </section>
 
+    <!-- CONTACT SECTION -->
     <section id="contact" class="section dark">
       <div class="container">
+        <div class="section-header">
           <h2 class="section-title" data-i18n="contact_h3">Contact & Inquiry</h2>
-          <p class="section-subtitle" data-i18n="contact_sub">If you wish to enroll in courses or inquire about services, please contact us easily via the links below.</p>
+          <p class="section-subtitle" data-i18n="contact_sub">သင်တန်းအပ်နှံလိုပါက သို့မဟုတ် ဝန်ဆောင်မှုများ မေးမြန်းလိုပါက အောက်ပါ Link များမှတစ်ဆင့် လွယ်ကူစွာ ဆက်သွယ်နိုင်ပါသည်။</p>
+        </div>
 
-          <div class="contact-grid">
-              <div class="contact-info">
-                  <p data-i18n="contact_note" style="color: #ccc; margin-bottom: 20px;">You can add phone numbers or other contact methods for services.</p>
-                  <a href="https://t.me/mrbossbabyinfo" class="btn-primary" data-i18n="btn_telegram"><i class="fab fa-telegram"></i> Telegram Messenger</a>
-              </div>
-              
-              <div class="social-block">
-                <h3 style="color: var(--neon-cyan); margin-bottom: 15px;" data-i18n="social_h3">Social Media</h3>
-                <p style="color: #aaa; margin-bottom: 20px;" data-i18n="social_sub">Learn about the latest information and technology knowledge on the social networks below.</p>
-                <div class="social-links">
-                  <a href="#"><i class="fab fa-facebook"></i></a>
-                  <a href="https://t.me/mrbossbabyinfo"><i class="fab fa-telegram"></i></a>
-                  <a href="#"><i class="fab fa-instagram"></i></a>
-                  <a href="#"><i class="fab fa-github"></i></a>
-                </div>
-              </div>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3 style="color: var(--neon-cyan); margin-bottom: 12px;" data-i18n="direct_contact_h3">Direct Messenger</h3>
+            <p data-i18n="contact_note" style="color: #ccc; margin-bottom: 24px;">သင်တန်းအပ်နှံခြင်းနှင့် လုပ်ငန်းဆိုင်ရာ ဆွေးနွေးမှုများအတွက် Telegram မှတစ်ဆင့် အမြန်ဆုံး ဆက်သွယ်နိုင်ပါသည်။</p>
+            <a href="https://t.me/mrbossbabyinfo" target="_blank" rel="noopener noreferrer" class="btn-primary">
+              <i class="fab fa-telegram"></i> <span data-i18n="btn_telegram">Telegram Messenger</span>
+            </a>
           </div>
+          
+          <div class="social-block">
+            <h3 style="color: var(--neon-cyan); margin-bottom: 12px;" data-i18n="social_h3">Social Media</h3>
+            <p style="color: #aaa; margin-bottom: 20px;" data-i18n="social_sub">နောက်ဆုံးရ နည်းပညာဗဟုသုတများနှင့် သင်တန်းသတင်းများကို အောက်ပါ Social Media များတွင် လေ့လာနိုင်ပါသည်။</p>
+            <div class="social-links">
+              <a href="https://t.me/mrbossbabyinfo" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p>© 2024 Mr.BossBaby Academy. All Rights Reserved.</p>
-    <p style="color: #444; font-size: 0.7rem; margin-top:5px;" data-i18n="footer_sub">Empowering Myanmar's Digital Future.</p>
+    <p>© <span id="currentYear">2026</span> Mr.BossBaby Academy. All Rights Reserved.</p>
+    <p style="color: #64748b; font-size: 0.78rem; margin-top:5px;" data-i18n="footer_sub">Empowering Myanmar's Digital Future.</p>
   </footer>
 
-  <div id="passwordModal" class="modal">
+  <!-- Quick Admin Trigger Button -->
+  <button class="admin-lock-btn" onclick="App.openPasswordModal()" title="Admin Panel (Password: admin123)">
+    <i class="fas fa-user-shield"></i>
+  </button>
+
+  <!-- PASSWORD MODAL -->
+  <div id="passwordModal" class="modal" onclick="if(event.target===this) App.closePasswordModal()">
     <div class="modal-content">
-      <h3 data-i18n="pass_auth">စနစ်သို့ဝင်ရောက်မည်</h3>
-      <input type="password" id="adminPass" data-i18n-placeholder="pass_input" placeholder="ဝင်ရောက်ခွင့်ကုတ်နံပါတ်">
-      <button class="btn-primary" onclick="App.checkPassword()" data-i18n="pass_auth">AUTHENTICATE</button>
+      <button class="modal-close" onclick="App.closePasswordModal()">&times;</button>
+      <h3 data-i18n="pass_title">Admin စနစ်သို့ ဝင်ရောက်မည်</h3>
+      <div class="input-group">
+        <input type="password" id="adminPass" data-i18n-placeholder="pass_input" placeholder="ဝင်ရောက်ခွင့်ကုတ်နံပါတ် (Default: admin123)" onkeydown="if(event.key==='Enter') App.checkPassword()">
+      </div>
+      <div class="modal-actions">
+        <button class="btn-primary" onclick="App.checkPassword()" data-i18n="pass_btn">AUTHENTICATE</button>
+        <button class="btn-secondary" onclick="App.closePasswordModal()" data-i18n="modal_cancel">Cancel</button>
+      </div>
     </div>
   </div>
 
-  <div id="addCourseModal" class="modal">
+  <!-- ADD / EDIT COURSE MODAL -->
+  <div id="addCourseModal" class="modal" onclick="if(event.target===this) App.closeAddModal()">
     <div class="modal-content">
-      <h3 data-i18n="modal_h3">သင်တန်းအသစ်ထည့်သွင်းခြင်း</h3>
+      <button class="modal-close" onclick="App.closeAddModal()">&times;</button>
+      <h3 id="courseModalHeader" data-i18n="modal_h3">သင်တန်းအသစ်ထည့်သွင်းခြင်း</h3>
+      <input type="hidden" id="editCourseId">
+
       <div class="input-group">
         <label data-i18n="modal_title_label">သင်တန်းခေါင်းစဉ်</label>
-        <input type="text" id="newTitle" placeholder="e.g. Python Masterclass">
+        <input type="text" id="newTitle" placeholder="e.g. Python for Ethical Hacking">
       </div>
       <div class="input-group">
         <label data-i18n="modal_img_label">ပုံလိပ်စာ (URL)</label>
-        <input type="text" id="newImg" placeholder="https://..." value="https://placehold.co/600x400/000000/00ffc6?text=New+Class">
+        <input type="text" id="newImg" placeholder="https://..." value="https://placehold.co/600x400/060913/00ffc6?text=Cyber+Class">
       </div>
       <div class="input-group">
         <label data-i18n="modal_badge_label">Badge (တံဆိပ်)</label>
         <input type="text" id="newBadge" placeholder="e.g. Best Seller">
       </div>
       <div class="input-group">
-        <label data-i18n="modal_meta_label">Meta Data</label>
-        <input type="text" id="newMeta" placeholder="e.g. <i class='fas fa-clock'></i> 1 Month">
+        <label data-i18n="modal_meta_label">Meta Data (သင်တန်းကာလ / အချိန်)</label>
+        <input type="text" id="newMeta" placeholder="e.g. 2 Months • Live + Recorded">
       </div>
       <div class="input-group">
         <label data-i18n="modal_desc_label">အကျဉ်းချုပ် ဖော်ပြချက်</label>
-        <textarea id="newDesc" placeholder="This course covers..."></textarea>
+        <textarea id="newDesc" placeholder="သင်တန်းအကြောင်း အကျဉ်းချုပ်..."></textarea>
       </div>
       <div class="input-group">
-        <label data-i18n="modal_tags_label">Tags (Comma Separated)</label>
-        <input type="text" id="newTags" placeholder="e.g. HTML, CSS, JavaScript">
+        <label data-i18n="modal_tags_label">Tags (ကော်မာခံ၍ ရေးပါ)</label>
+        <input type="text" id="newTags" placeholder="e.g. Linux, Network, Penetration Testing">
       </div>
       <div class="input-group price-inputs">
         <div>
@@ -172,6 +1085,414 @@
     </div>
   </div>
 
-  <script src="assets/js/app.js"></script>
+  <script>
+    const App = {
+      lang: localStorage.getItem('bb_lang') || 'my',
+      isAdmin: sessionStorage.getItem('bb_admin') === 'true',
+      adminSecret: 'admin123',
+      clickCount: 0,
+      clickTimer: null,
 
+      translations: {
+        my: {
+          nav_home: "ပင်မစာမျက်နှာ",
+          nav_services: "ဝန်ဆောင်မှု",
+          nav_classes: "သင်တန်းများ",
+          nav_contact: "ဆက်သွယ်ရန်",
+          hero_title_sub: "Ethical Hacker | Full Stack Developer | Instructor",
+          hero_quote: "\"နည်းပညာဆိုတာ လူသားတွေရဲ့ လက်နက်ဖြစ်တယ်။ အဲ့ဒီလက်နက်ကို ဘယ်လို စနစ်တကျ၊ လုံခြုံစွာ ကိုင်တွယ်မလဲဆိုတာ ကျွန်တော်တို့ သင်ကြားပေးနေပါတယ်။\"",
+          hero_btn_courses: "သင်တန်းများကြည့်ရန်",
+          hero_btn_contact: "တိုက်ရိုက်ဆက်သွယ်ရန်",
+          stat_students: "သင်တန်းသားများ",
+          stat_projects: "ပရောဂျက်များ",
+          stat_support: "လက်တွေ့ပံ့ပိုးမှု",
+          services_h3: "Professional Services",
+          services_h3_sub: "ကျွန်တော်တို့ ပေးစွမ်းနိုင်သော ကျွမ်းကျင်ဝန်ဆောင်မှုများ",
+          service1_title: "Security Consultation",
+          service1_desc: "လုပ်ငန်းသုံး Website/App များ၏ လုံခြုံရေး အားနည်းချက်များကို ရှာဖွေစစ်ဆေးပေးခြင်း။",
+          service2_title: "App Development (Native)",
+          service2_desc: "Android & iOS Application များကို ခေတ်မီ Design၊ မြင့်မားသော Performance ဖြင့် ရေးဆွဲပေးခြင်း။",
+          service3_title: "Web Solutions",
+          service3_desc: "Personal Portfolio မှ E-commerce အထိ Web Application မျိုးစုံကို စိတ်တိုင်းကျ ဖန်တီးပေးခြင်း။",
+          service4_title: "Game & Custom App Dev",
+          service4_desc: "Online 2D Game များ ဖန်တီးခြင်းနှင့် လုပ်ငန်းရှင်များအတွက် စိတ်ကြိုက် စီမံခန့်ခွဲမှု App များကို ရေးဆွဲပေးခြင်း။",
+          classes_h3: "Premium Online Classes",
+          classes_h3_sub: "Professional တစ်ယောက်ဖြစ်ဖို့ လိုအပ်သော နည်းပညာများ",
+          search_placeholder: "သင်တန်း သို့မဟုတ် နည်းပညာ ရှာဖွေရန်...",
+          admin_add: "သင်တန်းအသစ်ထည့်ရန်",
+          admin_reset: "မူလအတိုင်းပြန်ထားရန်",
+          admin_logout: "Admin ပိတ်မည်",
+          admin_active: "[ ADMIN MODE ဖွင့်ထားသည် ]",
+          contact_h3: "Contact & Inquiry",
+          contact_sub: "သင်တန်းအပ်နှံလိုပါက သို့မဟုတ် ဝန်ဆောင်မှုများ မေးမြန်းလိုပါက အောက်ပါ Link များမှတစ်ဆင့် လွယ်ကူစွာ ဆက်သွယ်နိုင်ပါသည်။",
+          direct_contact_h3: "Direct Messenger",
+          contact_note: "သင်တန်းအပ်နှံခြင်းနှင့် လုပ်ငန်းဆိုင်ရာ ဆွေးနွေးမှုများအတွက် Telegram မှတစ်ဆင့် အမြန်ဆုံး ဆက်သွယ်နိုင်ပါသည်။",
+          btn_telegram: "Telegram ဖြင့် ဆက်သွယ်ရန်",
+          social_h3: "Social Media",
+          social_sub: "နောက်ဆုံးရ နည်းပညာဗဟုသုတများနှင့် သင်တန်းသတင်းများကို အောက်ပါ Social Media များတွင် လေ့လာနိုင်ပါသည်။",
+          footer_sub: "မြန်မာ့ဒစ်ဂျစ်တယ် အနာဂတ်ကို မြှင့်တင်ပေးနေပါသည်။",
+          pass_title: "Admin စနစ်သို့ ဝင်ရောက်မည်",
+          pass_input: "ဝင်ရောက်ခွင့်ကုတ်နံပါတ် (Default: admin123)",
+          pass_btn: "ဝင်ရောက်မည်",
+          modal_h3: "သင်တန်းအသစ်ထည့်သွင်းခြင်း",
+          modal_title_label: "သင်တန်းခေါင်းစဉ်",
+          modal_img_label: "ပုံလိပ်စာ (URL)",
+          modal_badge_label: "Badge (တံဆိပ်)",
+          modal_meta_label: "Meta Data (သင်တန်းကာလ)",
+          modal_desc_label: "အကျဉ်းချုပ် ဖော်ပြချက်",
+          modal_tags_label: "Tags (ကော်မာခံ၍ ရေးပါ)",
+          modal_price_label: "ဈေးနှုန်း (ကျပ်)",
+          modal_oldprice_label: "မူရင်းဈေးနှုန်း (Optional)",
+          modal_save: "သိမ်းဆည်းမည်",
+          modal_cancel: "ပယ်ဖျက်မည်",
+          enroll_btn: "သင်တန်းအပ်ရန်"
+        },
+        en: {
+          nav_home: "Home",
+          nav_services: "Services",
+          nav_classes: "Classes",
+          nav_contact: "Contact",
+          hero_title_sub: "Ethical Hacker | Full Stack Developer | Instructor",
+          hero_quote: "\"Technology is humanity's weapon. We teach you how to wield that weapon systematically, ethically, and securely.\"",
+          hero_btn_courses: "Explore Courses",
+          hero_btn_contact: "Direct Contact",
+          stat_students: "Active Students",
+          stat_projects: "Completed Projects",
+          stat_support: "Practical Support",
+          services_h3: "Professional Services",
+          services_h3_sub: "Expert technical & cybersecurity solutions tailored for your business",
+          service1_title: "Security Consultation",
+          service1_desc: "Comprehensive vulnerability assessment and penetration testing for enterprise websites & apps.",
+          service2_title: "App Development (Native)",
+          service2_desc: "Building modern, high-performance Android & iOS applications with sleek UI/UX.",
+          service3_title: "Web Solutions",
+          service3_desc: "Custom web applications ranging from personal portfolios to full-scale e-commerce platforms.",
+          service4_title: "Game & Custom App Dev",
+          service4_desc: "Creating online 2D games and tailored business management software solutions.",
+          classes_h3: "Premium Online Classes",
+          classes_h3_sub: "Master the essential technologies required to become an industry professional",
+          search_placeholder: "Search courses or technologies...",
+          admin_add: "Add New Course",
+          admin_reset: "Reset Defaults",
+          admin_logout: "Exit Admin",
+          admin_active: "[ ADMIN MODE ACTIVE ]",
+          contact_h3: "Contact & Inquiry",
+          contact_sub: "If you wish to enroll in courses or inquire about services, please contact us easily via the links below.",
+          direct_contact_h3: "Direct Messenger",
+          contact_note: "Reach out directly via Telegram for instant course enrollment and project consultations.",
+          btn_telegram: "Telegram Messenger",
+          social_h3: "Social Media",
+          social_sub: "Follow our social channels for the latest cybersecurity insights and class updates.",
+          footer_sub: "Empowering Myanmar's Digital Future.",
+          pass_title: "Admin Authentication",
+          pass_input: "Enter Access Passcode (Default: admin123)",
+          pass_btn: "AUTHENTICATE",
+          modal_h3: "Add / Edit Course",
+          modal_title_label: "Course Title",
+          modal_img_label: "Image URL",
+          modal_badge_label: "Badge",
+          modal_meta_label: "Duration / Meta Info",
+          modal_desc_label: "Short Description",
+          modal_tags_label: "Tags (Comma Separated)",
+          modal_price_label: "Price",
+          modal_oldprice_label: "Original Price (Optional)",
+          modal_save: "Save Course",
+          modal_cancel: "Cancel",
+          enroll_btn: "Enroll Now"
+        }
+      },
+
+      defaultCourses: [
+        {
+          id: "c1",
+          title: "Ethical Hacking & Cyber Security Masterclass",
+          img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
+          badge: "Best Seller",
+          meta: "3 Months • Zero to Hero",
+          desc: "Kali Linux, Network Pentesting, Web Vulnerability (OWASP Top 10) နှင့် လက်တွေ့ လုံခြုံရေးစစ်ဆေးနည်းများကို အခြေခံမှစ၍ စနစ်တကျ သင်ကြားပေးမည့် အတန်းဖြစ်ပါသည်။",
+          tags: ["Kali Linux", "OWASP", "Pentesting", "Networking"],
+          price: "180,000 Ks",
+          oldPrice: "250,000 Ks"
+        },
+        {
+          id: "c2",
+          title: "Full-Stack Web Development Bootcamp",
+          img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
+          badge: "Popular",
+          meta: "3 Months • Project Based",
+          desc: "ခေတ်မီ Responsive Website များနှင့် Backend Server, Database ချိတ်ဆက်မှုများကို Real-world Project များဖြင့် လက်တွေ့ရေးဆွဲသင်ကြားပေးပါသည်။",
+          tags: ["HTML/CSS", "JavaScript", "React", "Node.js"],
+          price: "150,000 Ks",
+          oldPrice: "220,000 Ks"
+        },
+        {
+          id: "c3",
+          title: "Mobile App & 2D Game Development",
+          img: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80",
+          badge: "New Class",
+          meta: "2.5 Months • Android & iOS",
+          desc: "Android နှင့် iOS နှစ်မျိုးလုံးတွင် အလုပ်လုပ်သော Native/Cross-platform App များနှင့် Online 2D Game များ ဖန်တီးနည်းကို အသေးစိတ် သင်ကြားပေးပါသည်။",
+          tags: ["Flutter", "Android", "2D Game", "Firebase"],
+          price: "160,000 Ks",
+          oldPrice: "210,000 Ks"
+        }
+      ],
+
+      init() {
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        if (!localStorage.getItem('bb_courses')) {
+          localStorage.setItem('bb_courses', JSON.stringify(this.defaultCourses));
+        }
+
+        // Triple click on "Premium Online Classes" title to open Admin Login
+        const trigger = document.getElementById('adminTrigger');
+        if (trigger) {
+          trigger.addEventListener('click', () => {
+            this.clickCount++;
+            clearTimeout(this.clickTimer);
+            this.clickTimer = setTimeout(() => { this.clickCount = 0; }, 800);
+            if (this.clickCount >= 3) {
+              this.clickCount = 0;
+              this.openPasswordModal();
+            }
+          });
+        }
+
+        this.applyLanguage();
+        this.updateAdminUI();
+        this.renderCourses();
+      },
+
+      getCourses() {
+        try {
+          return JSON.parse(localStorage.getItem('bb_courses')) || this.defaultCourses;
+        } catch (e) {
+          return this.defaultCourses;
+        }
+      },
+
+      saveCourses(courses) {
+        localStorage.setItem('bb_courses', JSON.stringify(courses));
+        this.renderCourses();
+      },
+
+      toggleMobileMenu() {
+        const nav = document.getElementById('navLinks');
+        const icon = document.getElementById('menuIconSymbol');
+        nav.classList.toggle('active');
+        icon.className = nav.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
+      },
+
+      closeMobileMenu() {
+        const nav = document.getElementById('navLinks');
+        const icon = document.getElementById('menuIconSymbol');
+        nav.classList.remove('active');
+        if (icon) icon.className = 'fas fa-bars';
+      },
+
+      switchLanguage() {
+        this.lang = this.lang === 'my' ? 'en' : 'my';
+        localStorage.setItem('bb_lang', this.lang);
+        this.applyLanguage();
+        this.renderCourses();
+      },
+
+      applyLanguage() {
+        const dict = this.translations[this.lang];
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (dict[key]) el.textContent = dict[key];
+        });
+
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+          const key = el.getAttribute('data-i18n-placeholder');
+          if (dict[key]) el.setAttribute('placeholder', dict[key]);
+        });
+
+        const langBtn = document.getElementById('lang-toggle-btn');
+        if (langBtn) {
+          langBtn.textContent = this.lang === 'my' ? 'English' : 'မြန်မာ';
+        }
+      },
+
+      renderCourses() {
+        const container = document.getElementById('coursesList');
+        const searchVal = (document.getElementById('courseSearchInput')?.value || '').toLowerCase().trim();
+        const courses = this.getCourses();
+        const enrollText = this.translations[this.lang].enroll_btn;
+
+        const filtered = courses.filter(c => {
+          return c.title.toLowerCase().includes(searchVal) ||
+                 c.desc.toLowerCase().includes(searchVal) ||
+                 (c.tags && c.tags.join(' ').toLowerCase().includes(searchVal));
+        });
+
+        if (filtered.length === 0) {
+          container.innerHTML = `<p style="color:var(--text-muted); grid-column: 1/-1; text-align:center; padding: 30px;">ရှာဖွေထားသော သင်တန်း မတွေ့ရှိပါ။</p>`;
+          return;
+        }
+
+        container.innerHTML = filtered.map(c => {
+          const tagsHTML = (c.tags || []).map(t => `<span class="tag-chip">${t}</span>`).join('');
+          const enrollLink = `https://t.me/mrbossbabyinfo`;
+          const adminBtns = this.isAdmin ? `
+            <div class="course-admin-actions">
+              <button class="btn-edit-course" onclick="App.openEditModal('${c.id}')"><i class="fas fa-edit"></i> Edit</button>
+              <button class="btn-del-course" onclick="App.deleteCourse('${c.id}')"><i class="fas fa-trash"></i> Delete</button>
+            </div>
+          ` : '';
+
+          return `
+            <div class="course-card">
+              <div class="course-img-wrap">
+                <img src="${c.img}" alt="${c.title}" onerror="this.src='https://placehold.co/600x400/060913/00ffc6?text=Course'">
+                ${c.badge ? `<span class="course-badge">${c.badge}</span>` : ''}
+              </div>
+              <div class="course-body">
+                <div class="course-meta"><i class="fas fa-clock"></i> <span>${c.meta || 'Flexible Schedule'}</span></div>
+                <h4 class="course-title">${c.title}</h4>
+                <p class="course-desc">${c.desc}</p>
+                <div class="course-tags">${tagsHTML}</div>
+                <div class="course-footer">
+                  <div>
+                    ${c.oldPrice ? `<span class="course-old-price">${c.oldPrice}</span>` : ''}
+                    <span class="course-price">${c.price}</span>
+                  </div>
+                  <a href="${enrollLink}" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding: 8px 18px; font-size: 0.84rem;">
+                    <i class="fab fa-telegram"></i> ${enrollText}
+                  </a>
+                </div>
+                ${adminBtns}
+              </div>
+            </div>
+          `;
+        }).join('');
+      },
+
+      openPasswordModal() {
+        if (this.isAdmin) {
+          document.getElementById('classes').scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+        document.getElementById('adminPass').value = '';
+        document.getElementById('passwordModal').classList.add('active');
+        setTimeout(() => document.getElementById('adminPass').focus(), 100);
+      },
+
+      closePasswordModal() {
+        document.getElementById('passwordModal').classList.remove('active');
+      },
+
+      checkPassword() {
+        const input = document.getElementById('adminPass').value.trim();
+        if (input === this.adminSecret) {
+          this.isAdmin = true;
+          sessionStorage.setItem('bb_admin', 'true');
+          this.closePasswordModal();
+          this.updateAdminUI();
+          this.renderCourses();
+          document.getElementById('classes').scrollIntoView({ behavior: 'smooth' });
+        } else {
+          alert(this.lang === 'my' ? 'စကားဝှက် မှားယွင်းနေပါသည်! (Default: admin123)' : 'Invalid Password! (Default: admin123)');
+        }
+      },
+
+      logoutAdmin() {
+        this.isAdmin = false;
+        sessionStorage.removeItem('bb_admin');
+        this.updateAdminUI();
+        this.renderCourses();
+      },
+
+      updateAdminUI() {
+        const panel = document.getElementById('adminPanel');
+        if (panel) {
+          panel.classList.toggle('active', this.isAdmin);
+        }
+      },
+
+      openAddModal() {
+        document.getElementById('editCourseId').value = '';
+        document.getElementById('newTitle').value = '';
+        document.getElementById('newImg').value = 'https://placehold.co/600x400/060913/00ffc6?text=New+Class';
+        document.getElementById('newBadge').value = 'Hot';
+        document.getElementById('newMeta').value = '2 Months • Online';
+        document.getElementById('newDesc').value = '';
+        document.getElementById('newTags').value = 'Security, Coding';
+        document.getElementById('newPrice').value = '150,000 Ks';
+        document.getElementById('newOldPrice').value = '';
+        document.getElementById('addCourseModal').classList.add('active');
+      },
+
+      openEditModal(id) {
+        const courses = this.getCourses();
+        const found = courses.find(c => c.id === id);
+        if (!found) return;
+
+        document.getElementById('editCourseId').value = found.id;
+        document.getElementById('newTitle').value = found.title;
+        document.getElementById('newImg').value = found.img;
+        document.getElementById('newBadge').value = found.badge || '';
+        document.getElementById('newMeta').value = found.meta || '';
+        document.getElementById('newDesc').value = found.desc;
+        document.getElementById('newTags').value = (found.tags || []).join(', ');
+        document.getElementById('newPrice').value = found.price;
+        document.getElementById('newOldPrice').value = found.oldPrice || '';
+        document.getElementById('addCourseModal').classList.add('active');
+      },
+
+      closeAddModal() {
+        document.getElementById('addCourseModal').classList.remove('active');
+      },
+
+      saveNewCourse() {
+        const editId = document.getElementById('editCourseId').value;
+        const title = document.getElementById('newTitle').value.trim();
+        const img = document.getElementById('newImg').value.trim() || 'https://placehold.co/600x400/060913/00ffc6?text=Class';
+        const badge = document.getElementById('newBadge').value.trim();
+        const meta = document.getElementById('newMeta').value.trim();
+        const desc = document.getElementById('newDesc').value.trim();
+        const tagsRaw = document.getElementById('newTags').value;
+        const price = document.getElementById('newPrice').value.trim() || 'Contact Us';
+        const oldPrice = document.getElementById('newOldPrice').value.trim();
+
+        if (!title || !desc) {
+          alert(this.lang === 'my' ? 'သင်တန်းခေါင်းစဉ်နှင့် အကျဉ်းချုပ်ကို ဖြည့်စွက်ပေးပါ။' : 'Please enter both title and description.');
+          return;
+        }
+
+        const tags = tagsRaw.split(',').map(t => t.trim()).filter(Boolean);
+        let courses = this.getCourses();
+
+        if (editId) {
+          courses = courses.map(c => c.id === editId ? { id: editId, title, img, badge, meta, desc, tags, price, oldPrice } : c);
+        } else {
+          courses.unshift({
+            id: 'c_' + Date.now(),
+            title, img, badge, meta, desc, tags, price, oldPrice
+          });
+        }
+
+        this.saveCourses(courses);
+        this.closeAddModal();
+      },
+
+      deleteCourse(id) {
+        const confirmMsg = this.lang === 'my' ? 'ဤသင်တန်းကို ဖျက်ရန် သေချာပါသလား?' : 'Are you sure you want to delete this course?';
+        if (!confirm(confirmMsg)) return;
+        const courses = this.getCourses().filter(c => c.id !== id);
+        this.saveCourses(courses);
+      },
+
+      resetDefaultCourses() {
+        const confirmMsg = this.lang === 'my' ? 'မူလသင်တန်းများအတိုင်း ပြန်လည်ထားရှိမည်မှာ သေချာပါသလား?' : 'Reset all courses to default?';
+        if (!confirm(confirmMsg)) return;
+        this.saveCourses(this.defaultCourses);
+      }
+    };
+
+    window.addEventListener('DOMContentLoaded', () => App.init());
+  </script>
+</body>
 </html>
